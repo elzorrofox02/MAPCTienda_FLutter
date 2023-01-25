@@ -1,12 +1,13 @@
 import 'dart:convert';
 
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:hellowork/models/Product.dart';
-
-import 'package:http/http.dart' as http;
+//import 'package:hellowork/screens/details/details_screen.dart';
 
 import '../../../constants.dart';
-import 'product_card.dart';
+//import 'product_card.dart';
+import 'product_card2.dart';
 import 'section_title.dart';
 import 'ShowAllProducts.dart';
 
@@ -24,16 +25,18 @@ class _NewArrivalProductsState extends State<NewArrivalProducts> {
     final response = await http.get(Uri.parse("http://192.168.0.73:3000/item"));
     if (response.statusCode == 200) {
       String body = utf8.decode(response.bodyBytes);
-      final jsonData = jsonDecode(body);
+      //final jsonData = jsonDecode(body);
 
-      List<Product> productosS = [];
+      /* List<Product> productosS = [];
 
       for (var item in jsonData["items"]) {
-        productosS.add(Product(id: item["_id"], image: item["image"]["path"], name: item["name"], price: "5.12", url: item["slug"], stock: item["cantidad"]));
+        productosS.add(Product(id: item["_id"], image: item["image"]["path"], name: item["name"], price: item["price"].toString(), url: item["slug"], stock: item["cantidad"], colors: [], images: item["image"]["fotos"]));
       }
-      return productosS;
+      return productosS; */
 
-      //return jsonData["items"].map((data) => Product.fromJson(data)).toList();
+      final jsonData = jsonDecode(body)["items"];
+
+      return jsonData.map<Product>(Product.fromJson).toList();
       //return jsonData["items"].map((dynamic e) => Product.fromJson(e)).toList();
     } else {
       throw Exception("fallo algo");
@@ -72,21 +75,7 @@ class _NewArrivalProductsState extends State<NewArrivalProducts> {
                 return Row(
                     children: List.generate(
                   snapshot.data!.length,
-                  (index) => Padding(
-                    padding: const EdgeInsets.only(right: defaultPadding),
-                    child: ProductCard(
-                      name: snapshot.data![index].name,
-                      image: snapshot.data![index].image,
-                      price: snapshot.data![index].price,
-                      bgColor: snapshot.data![index].bgColor,
-                      press: () {
-                        /* setState(() {
-                          demo_product.remove(demo_product[index]);
-                        }); */
-                        //Navigator.push(context,MaterialPageRoute(builder: (context) => DetailsScreen(product: demo_product[index]),));
-                      },
-                    ),
-                  ),
+                  (index) => Padding(padding: const EdgeInsets.only(right: defaultPadding), child: ProductCard2(product: snapshot.data![index])),
                 ));
               } else if (snapshot.hasError) {
                 return const Text("errroor");

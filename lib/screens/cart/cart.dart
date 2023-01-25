@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hellowork/models/Cart.dart';
 import 'package:flutter_svg/svg.dart';
-
 import 'package:provider/provider.dart';
-
 import 'package:hellowork/mainProvider.dart';
 
+import 'package:hellowork/components/default_button.dart';
 import '../../constants.dart';
 import '../../size_config.dart';
 
@@ -23,15 +22,7 @@ class _CartState extends State<Cart> {
     return Scaffold(
       appBar: buildAppBar(context),
       body: const Bodys(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          //context.read<CartProvider>().setText(value1: "Viva españa");
-          //Provider.of<CartProvider>(context, listen: false).setText(value1: "Viva españa");
-        },
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
-      // bottomNavigationBar: CheckoutCard(),
+      bottomNavigationBar: const CheckoutCard(),
     );
   }
 
@@ -39,7 +30,7 @@ class _CartState extends State<Cart> {
     return AppBar(
       centerTitle: true,
       leading: const BackButton(
-        color: Colors.black, // <-- SEE HERE
+        color: Colors.black,
       ),
       title: Column(
         children: [
@@ -49,14 +40,10 @@ class _CartState extends State<Cart> {
           ),
           Consumer<CartProvider>(
             builder: (context, cart, child) => Text(
-              cart.text1,
+              cart.totalItems,
               style: Theme.of(context).textTheme.caption,
             ),
           ),
-          /* Text(
-            "${demoCarts.length} items",
-            style: Theme.of(context).textTheme.caption,
-          ), */
         ],
       ),
     );
@@ -73,69 +60,48 @@ class _BodyState extends State<Bodys> {
   @override
   Widget build(BuildContext context) {
     final cart = Provider.of<CartProvider>(context);
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
-      child: ListView.builder(
-        itemCount: cart.items.length,
-        itemBuilder: (context, index) => Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10),
-          child: Dismissible(
-            key: Key(cart.items.values.toList()[index].id.toString()),
-            direction: DismissDirection.endToStart,
-            onDismissed: (direction) {
-              context.read<CartProvider>().removeItem(productId: cart.items.values.toList()[index].id.toString());
-              //Provider.of<CartProvider>(context, listen: false).removeItem(productId: "Viva españa");
-
-              /* setState(() {
-                demoCarts.removeAt(index);
-              }); */
-            },
-            background: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              decoration: BoxDecoration(
-                color: const Color(0xFFFFE6E6),
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Row(
-                children: [
-                  const Spacer(),
-                  SvgPicture.asset("assets/icons/Heart.svg"),
-                ],
+    return cart.items.isEmpty
+        ? const Center(child: Text('Empty'))
+        : Padding(
+            padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+            child: ListView.builder(
+              itemCount: cart.items.length,
+              itemBuilder: (context, index) => Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: Dismissible(
+                  key: Key(cart.items.values.toList()[index].id.toString()),
+                  direction: DismissDirection.endToStart,
+                  onDismissed: (direction) {
+                    context.read<CartProvider>().removeItem(productId: cart.items.values.toList()[index].id.toString());
+                    //Provider.of<CartProvider>(context, listen: false).removeItem(productId: "Viva españa");
+                  },
+                  background: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFFFE6E6),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Row(
+                      children: [
+                        const Spacer(),
+                        SvgPicture.asset("assets/icons/Heart.svg"),
+                      ],
+                    ),
+                  ),
+                  child: CartCard(cart: cart.items.values.toList()[index]),
+                ),
               ),
             ),
-            //child: CartCard(cart: cart.items.values.toList()[index]),
-            child: CartCard(
-              productId: cart.items.values.toList()[index].id,
-              name: cart.items.values.toList()[index].name,
-              image: cart.items.values.toList()[index].image,
-              price: cart.items.values.toList()[index].price,
-              qty: cart.items.values.toList()[index].qty,
-              //productId: cart.items.keys.toList()[index],
-            ),
-          ),
-        ),
-      ),
-    );
+          );
   }
 }
 
 class CartCard extends StatelessWidget {
-  /*  const CartCard({
+  const CartCard({
     Key? key,
     required this.cart,
   }) : super(key: key);
-
-  //final Object cart;
-
-  final mCart cart; */
-
-  const CartCard({Key? key, required this.name, required this.productId, required this.price, required this.image, required this.qty}) : super(key: key);
-
-  final String name;
-  final String productId;
-  final String price;
-  final String image;
-  final int qty;
+  final mCart cart;
 
   @override
   Widget build(BuildContext context) {
@@ -149,7 +115,7 @@ class CartCard extends StatelessWidget {
               padding: EdgeInsets.all(getProportionateScreenWidth(10)),
               child: FadeInImage.assetNetwork(
                 placeholder: 'assets/images/product_0.png',
-                image: image,
+                image: cart.image,
               ),
             ),
           ),
@@ -159,23 +125,85 @@ class CartCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              name,
+              cart.name,
               style: const TextStyle(color: Colors.black, fontSize: 16),
               maxLines: 2,
             ),
             const SizedBox(height: 10),
             Text.rich(
               TextSpan(
-                text: "\$${price}",
+                text: "\$${cart.price}",
                 style: const TextStyle(fontWeight: FontWeight.w600, color: kPrimaryColor),
                 children: [
-                  TextSpan(text: " x${qty}", style: Theme.of(context).textTheme.bodyText1),
+                  TextSpan(text: " x${cart.qty}", style: Theme.of(context).textTheme.bodyText1),
                 ],
               ),
             )
           ],
         )
       ],
+    );
+  }
+}
+
+class CheckoutCard extends StatelessWidget {
+  const CheckoutCard({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(
+        vertical: getProportionateScreenWidth(15),
+        horizontal: getProportionateScreenWidth(30),
+      ),
+      // height: 174,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(30),
+          topRight: Radius.circular(30),
+        ),
+        boxShadow: [
+          BoxShadow(
+            offset: const Offset(0, -15),
+            blurRadius: 20,
+            color: const Color(0xFFDADADA).withOpacity(0.15),
+          )
+        ],
+      ),
+      child: SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                const Text("Total:"),
+                const Spacer(),
+                Consumer<CartProvider>(
+                  builder: (context, cart, child) => Text(
+                    cart.totalToPay,
+                    style: Theme.of(context).textTheme.caption,
+                  ),
+                ),
+                const SizedBox(width: 10),
+              ],
+            ),
+            SizedBox(height: getProportionateScreenHeight(20)),
+            Center(
+              child: SizedBox(
+                width: getProportionateScreenWidth(190),
+                child: DefaultButton(
+                  text: "Check Out",
+                  press: () {},
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

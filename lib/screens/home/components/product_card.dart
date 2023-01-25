@@ -1,24 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:hellowork/models/Product.dart';
 
 import '../../../constants.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({
     Key? key,
-    required this.image,
-    required this.name,
-    required this.price,
+    required this.product,
     required this.press,
-    required this.bgColor,
   }) : super(key: key);
-  final String image, name;
+
   final VoidCallback press;
-  final String price;
-  final Color bgColor;
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
-    print("Build my wideg: $name");
     return GestureDetector(
       onTap: press,
       child: Container(
@@ -35,7 +31,7 @@ class ProductCard extends StatelessWidget {
               width: double.infinity,
               child: FadeInImage.assetNetwork(
                 placeholder: 'assets/images/product_0.png',
-                image: image,
+                image: product.image,
                 height: 132,
               ),
             ),
@@ -44,7 +40,7 @@ class ProductCard extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    name,
+                    product.name,
                     style: const TextStyle(color: Colors.black),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
@@ -52,7 +48,7 @@ class ProductCard extends StatelessWidget {
                 ),
                 const SizedBox(width: defaultPadding / 4),
                 Text(
-                  "\$ ${price.toString()}",
+                  "\$ ${product.price.toString()}",
                   style: Theme.of(context).textTheme.subtitle2,
                 ),
               ],

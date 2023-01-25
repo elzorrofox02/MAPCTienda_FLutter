@@ -23,7 +23,7 @@ class _ShowAllProductsState extends State<ShowAllProducts> {
       final jsonData = jsonDecode(body);
       List<Product> productosS = [];
       for (var item in jsonData["items"]) {
-        productosS.add(Product(id: item["_id"], image: item["image"]["path"], name: item["name"], price: "5.12", url: item["slug"], stock: item["cantidad"]));
+        productosS.add(Product(id: item["_id"], image: item["image"]["path"], name: item["name"], price: "5.12", url: item["slug"], stock: item["cantidad"], colors: [], images: []));
       }
       return productosS;
     } else {
@@ -61,10 +61,7 @@ class _ShowAllProductsState extends State<ShowAllProducts> {
                 itemCount: snapshot.data!.length,
                 itemBuilder: (context, index) {
                   return ProductCard(
-                    name: snapshot.data![index].name,
-                    image: snapshot.data![index].image,
-                    price: snapshot.data![index].price,
-                    bgColor: snapshot.data![index].bgColor,
+                    product: snapshot.data![index],
                     press: () {},
                   );
                 },

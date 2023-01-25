@@ -7,6 +7,8 @@ class Product {
   final String price;
   final int stock;
   final Color bgColor;
+  final List<Color> colors;
+  final List<dynamic> images;
 
   Product({
     required this.id,
@@ -15,18 +17,16 @@ class Product {
     required this.price,
     required this.url,
     required this.stock,
+    required this.colors,
+    required this.images,
     this.bgColor = const Color(0xFFEFEFF2),
   });
-  factory Product.fromJson(Map<String, dynamic> json) {
-    return Product(
-      id: json['_id'],
-      image: json['image']["path"],
-      name: json['name'],
-      url: json['slug'],
-      stock: json['cantidad'],
-      price: json['price'].toString(),
-    );
-  }
+
+  static Product fromJson(json) => Product(id: json['_id'], image: json['image']["path"], name: json['name'], url: json['slug'], stock: json['cantidad'], price: json['price'].toString(), colors: [], images: json['image']["fotos"]);
+
+  /* factory Product.fromJson(Map<String, dynamic> json) {
+    return Product(id: json['_id'], image: json['image']["path"], name: json['name'], url: json['slug'], stock: json['cantidad'], price: json['price'].toString(), colors: [], images: json['image']["fotos"]);
+  } */
 }
 
 List<Product> demo_product = [
@@ -36,6 +36,8 @@ List<Product> demo_product = [
     name: "Long Sleeve Shirts",
     price: "165.30",
     stock: 10,
+    colors: [],
+    images: [],
     url: "/item/holax",
     bgColor: const Color(0xFFFEFBF9),
   ),
@@ -45,6 +47,8 @@ List<Product> demo_product = [
     name: "Casual Henley Shirts",
     url: "/item/holax",
     stock: 10,
+    images: [],
+    colors: [],
     price: "99.30",
   ),
   Product(
@@ -53,6 +57,8 @@ List<Product> demo_product = [
     name: "Curved Hem Shirts",
     url: "/item/holax",
     price: "180.30",
+    colors: [],
+    images: [],
     stock: 10,
     bgColor: const Color(0xFFF8FEFB),
   ),
@@ -62,6 +68,8 @@ List<Product> demo_product = [
     name: "Casual Nolin",
     url: "/item/holax",
     price: "149.30",
+    colors: [],
+    images: [],
     stock: 10,
     bgColor: const Color(0xFFEEEEED),
   ),

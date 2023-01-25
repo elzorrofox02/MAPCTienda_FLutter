@@ -31,10 +31,7 @@ class PopularProducts extends StatelessWidget {
               (index) => Padding(
                 padding: const EdgeInsets.only(right: defaultPadding),
                 child: ProductCard(
-                  name: demo_product[index].name,
-                  image: demo_product[index].image,
-                  price: demo_product[index].price,
-                  bgColor: demo_product[index].bgColor,
+                  product: demo_product[index],
                   press: () {
                     Navigator.push(
                         context,
