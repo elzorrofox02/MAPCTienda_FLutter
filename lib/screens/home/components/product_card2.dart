@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hellowork/models/Product.dart';
+import 'package:hellowork/components/image_viewer.dart';
 //import 'package:hellowork/screens/details/details_screen.dart';
 import 'package:hellowork/screens/details/details_screen2.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
+//import 'package:cached_network_image/cached_network_image.dart';
 
 class ProductCard2 extends StatelessWidget {
   const ProductCard2({
@@ -32,12 +34,9 @@ class ProductCard2 extends StatelessWidget {
               AspectRatio(
                 aspectRatio: 1.02,
                 child: Hero(
-                  tag: product.id.toString(),
-                  child: FadeInImage.assetNetwork(
-                    placeholder: 'assets/images/product_0.png',
-                    image: product.image,
-                  ),
-                ),
+                    tag: product.id.toString(),
+                    //child: CachedNetworkImage(imageUrl: "saa.com", placeholder: (context, url) => const CircularProgressIndicator(), errorWidget: (context, url, error) => const Icon(Icons.error)),
+                    child: ImageLoads(image: product.image)),
               ),
               const SizedBox(height: 10),
               Text(

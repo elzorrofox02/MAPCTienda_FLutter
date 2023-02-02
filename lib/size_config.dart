@@ -13,6 +13,28 @@ class SizeConfig {
     screenHeight = _mediaQueryData.size.height;
     orientation = _mediaQueryData.orientation;
   }
+
+  static getScreenHeigth() {
+    return screenHeight;
+  }
+
+  static getHeigth(double pixels) {
+    double x = getScreenHeigth() / pixels;
+    return getScreenHeigth() / x;
+  }
+
+  static getScreenWidth() {
+    return screenWidth;
+  }
+
+  static getWidth(double pixels) {
+    double x = getScreenWidth() / pixels;
+    return getScreenWidth() / x;
+  }
+
+  static getSize(BuildContext context) {
+    return _mediaQueryData.size;
+  }
 }
 
 // Get the proportionate height as per screen size

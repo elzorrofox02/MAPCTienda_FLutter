@@ -9,7 +9,13 @@ const double defaultBorderRadius = 12.0;
 const kTextColor = Color(0xFF535353);
 const kTextLightColor = Color(0xFFACACAC);
 
+const kWhite = Color(0xFFFFFFFF);
 const kDefaultPaddin = 20.0;
 const kPrimaryColor = Color(0xFFFF7643);
 const kSecondaryColor = Color(0xFF979797);
 const defaultDuration = Duration(milliseconds: 250);
+
+const subtitleLight = TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.black45);
+const h1Style = TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black);
+
+const kPrice = Color(0xFFFD8629);

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hellowork/models/Product.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hellowork/components/image_viewer.dart';
 
 import '../../../constants.dart';
 import '../../../size_config.dart';
@@ -29,13 +31,7 @@ class _ProductImagesState extends State<ProductImages> {
           width: getProportionateScreenWidth(238),
           child: AspectRatio(
             aspectRatio: 1,
-            child: Hero(
-              tag: widget.product.id.toString(),
-              child: FadeInImage.assetNetwork(
-                placeholder: 'assets/images/product_0.png',
-                image: Img,
-              ),
-            ),
+            child: Hero(tag: widget.product.id.toString(), child: ImageLoads(image: widget.product.image)),
           ),
         ),
         // SizedBox(height: getProportionateScreenWidth(20)),
@@ -67,8 +63,7 @@ class _ProductImagesState extends State<ProductImages> {
           borderRadius: BorderRadius.circular(10),
           border: Border.all(color: kPrimaryColor.withOpacity(selectedImage == index ? 1 : 0)),
         ),
-        child: FadeInImage.assetNetwork(
-          placeholder: 'assets/images/product_0.png',
+        child: ImageLoads(
           image: widget.product.images[index],
         ),
       ),

@@ -25,19 +25,8 @@ class _NewArrivalProductsState extends State<NewArrivalProducts> {
     final response = await http.get(Uri.parse("http://192.168.0.73:3000/item"));
     if (response.statusCode == 200) {
       String body = utf8.decode(response.bodyBytes);
-      //final jsonData = jsonDecode(body);
-
-      /* List<Product> productosS = [];
-
-      for (var item in jsonData["items"]) {
-        productosS.add(Product(id: item["_id"], image: item["image"]["path"], name: item["name"], price: item["price"].toString(), url: item["slug"], stock: item["cantidad"], colors: [], images: item["image"]["fotos"]));
-      }
-      return productosS; */
-
       final jsonData = jsonDecode(body)["items"];
-
       return jsonData.map<Product>(Product.fromJson).toList();
-      //return jsonData["items"].map((dynamic e) => Product.fromJson(e)).toList();
     } else {
       throw Exception("fallo algo");
     }

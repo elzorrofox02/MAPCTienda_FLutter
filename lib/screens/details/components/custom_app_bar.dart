@@ -21,24 +21,28 @@ class CustomAppBar extends StatelessWidget {
         child: Row(
           children: [
             SizedBox(
-              height: getProportionateScreenWidth(40),
-              width: getProportionateScreenWidth(40),
-              child: TextButton(
-                style: TextButton.styleFrom(
-                  foregroundColor: kPrimaryColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(60),
+                height: getProportionateScreenWidth(40),
+                width: getProportionateScreenWidth(40),
+                child: TextButton(
+                  style: TextButton.styleFrom(
+                    foregroundColor: kPrimaryColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(60),
+                    ),
+                    backgroundColor: Colors.white,
+                    padding: EdgeInsets.zero,
                   ),
-                  backgroundColor: Colors.white,
-                  padding: EdgeInsets.zero,
+                  onPressed: () => Navigator.pop(context),
+                  child: IconButton(
+                    padding: EdgeInsets.zero,
+                    constraints: BoxConstraints(),
+                    icon: Icon(Icons.arrow_back),
+                    color: Colors.black,
+                    onPressed: () => Navigator.pop(context),
+                  ),
+                )
+                //child: const Icon(Icons.arrow_back_ios)),
                 ),
-                onPressed: () => Navigator.pop(context),
-                child: SvgPicture.asset(
-                  "assets/icons/menu.svg",
-                  height: 15,
-                ),
-              ),
-            ),
             const Spacer(),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 5),
@@ -56,7 +60,18 @@ class CustomAppBar extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 5),
-                  SvgPicture.asset("assets/icons/menu.svg"),
+                  IconButton(
+                    padding: EdgeInsets.zero,
+                    constraints: BoxConstraints(),
+                    icon: Icon(Icons.star_rate_rounded),
+                    color: Colors.yellow,
+                    onPressed: () {},
+                  ),
+                  /* const Icon(
+                    Icons.star_rate_rounded,
+                    color: Colors.yellow,
+                  ) */
+                  //SvgPicture.asset("assets/icons/menu.svg"),
                 ],
               ),
             )

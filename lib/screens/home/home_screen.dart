@@ -18,9 +18,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  //const HomeScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    print("build my home screenn");
     SizeConfig().init(context);
     return Scaffold(
       appBar: AppBar(

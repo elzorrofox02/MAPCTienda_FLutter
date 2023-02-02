@@ -3,10 +3,12 @@
 import 'package:flutter/material.dart';
 
 class Product {
-  final String id, image, name, url;
-  final String price;
+  final String id, image, name, url, price, description;
   final int stock;
   final Color bgColor;
+
+  final dynamic optionSearch;
+
   final List<Color> colors;
   final List<dynamic> images;
 
@@ -19,10 +21,12 @@ class Product {
     required this.stock,
     required this.colors,
     required this.images,
+    this.description = "",
+    this.optionSearch = "",
     this.bgColor = const Color(0xFFEFEFF2),
   });
 
-  static Product fromJson(json) => Product(id: json['_id'], image: json['image']["path"], name: json['name'], url: json['slug'], stock: json['cantidad'], price: json['price'].toString(), colors: [], images: json['image']["fotos"]);
+  static Product fromJson(json) => Product(id: json['_id'], image: json['image']["path"], name: json['name'], url: json['slug'], stock: json['cantidad'], price: json['price'].toString(), colors: [], images: json['image']["fotos"], description: json["description"], optionSearch: json["optionSearch"]);
 
   /* factory Product.fromJson(Map<String, dynamic> json) {
     return Product(id: json['_id'], image: json['image']["path"], name: json['name'], url: json['slug'], stock: json['cantidad'], price: json['price'].toString(), colors: [], images: json['image']["fotos"]);
@@ -39,6 +43,8 @@ List<Product> demo_product = [
     colors: [],
     images: [],
     url: "/item/holax",
+    description: "sss",
+    optionSearch: "s",
     bgColor: const Color(0xFFFEFBF9),
   ),
   Product(
@@ -49,6 +55,8 @@ List<Product> demo_product = [
     stock: 10,
     images: [],
     colors: [],
+    description: "sss",
+    optionSearch: "s",
     price: "99.30",
   ),
   Product(
@@ -59,6 +67,8 @@ List<Product> demo_product = [
     price: "180.30",
     colors: [],
     images: [],
+    description: "sss",
+    optionSearch: "s",
     stock: 10,
     bgColor: const Color(0xFFF8FEFB),
   ),
@@ -70,6 +80,8 @@ List<Product> demo_product = [
     price: "149.30",
     colors: [],
     images: [],
+    description: "sss",
+    optionSearch: "s",
     stock: 10,
     bgColor: const Color(0xFFEEEEED),
   ),

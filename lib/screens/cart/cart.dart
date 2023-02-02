@@ -3,8 +3,8 @@ import 'package:hellowork/models/Cart.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:hellowork/mainProvider.dart';
-
 import 'package:hellowork/components/default_button.dart';
+import 'package:hellowork/components/image_viewer.dart';
 import '../../constants.dart';
 import '../../size_config.dart';
 
@@ -20,32 +20,29 @@ class _CartState extends State<Cart> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(context),
+      appBar: AppBar(
+        centerTitle: true,
+        leading: BackButton(
+          color: Colors.black,
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        title: Column(
+          children: [
+            const Text(
+              "Your Cart",
+              style: TextStyle(color: Colors.black),
+            ),
+            Consumer<CartProvider>(
+              builder: (context, cart, child) => Text(
+                cart.totalItems,
+                style: Theme.of(context).textTheme.caption,
+              ),
+            ),
+          ],
+        ),
+      ),
       body: const Bodys(),
       bottomNavigationBar: const CheckoutCard(),
-    );
-  }
-
-  AppBar buildAppBar(BuildContext context) {
-    return AppBar(
-      centerTitle: true,
-      leading: const BackButton(
-        color: Colors.black,
-      ),
-      title: Column(
-        children: [
-          const Text(
-            "Your Cart",
-            style: TextStyle(color: Colors.black),
-          ),
-          Consumer<CartProvider>(
-            builder: (context, cart, child) => Text(
-              cart.totalItems,
-              style: Theme.of(context).textTheme.caption,
-            ),
-          ),
-        ],
-      ),
     );
   }
 }
@@ -111,13 +108,7 @@ class CartCard extends StatelessWidget {
           width: 88,
           child: AspectRatio(
             aspectRatio: 0.88,
-            child: Container(
-              padding: EdgeInsets.all(getProportionateScreenWidth(10)),
-              child: FadeInImage.assetNetwork(
-                placeholder: 'assets/images/product_0.png',
-                image: cart.image,
-              ),
-            ),
+            child: Container(padding: EdgeInsets.all(getProportionateScreenWidth(10)), child: ImageLoads(image: cart.image)),
           ),
         ),
         const SizedBox(width: 20),
@@ -159,8 +150,8 @@ class CheckoutCard extends StatelessWidget {
         horizontal: getProportionateScreenWidth(30),
       ),
       // height: 174,
-      decoration: BoxDecoration(
-        color: Colors.white,
+      /* decoration: BoxDecoration(
+        color: Colors.red,
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(30),
           topRight: Radius.circular(30),
@@ -172,7 +163,7 @@ class CheckoutCard extends StatelessWidget {
             color: const Color(0xFFDADADA).withOpacity(0.15),
           )
         ],
-      ),
+      ), */
       child: SafeArea(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -180,6 +171,32 @@ class CheckoutCard extends StatelessWidget {
           children: [
             Row(
               children: [
+                /*  const SizedBox(height: 150.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Sub-total', style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.w400, color: Colors.grey)),
+                    Text('\$365.00', style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.w400, color: Colors.black)),
+                  ],
+                ),
+                const SizedBox(height: 15.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Shipping fee', style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.w400, color: Colors.grey)),
+                    Text('\$15.00', style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.w400, color: Colors.black)),
+                  ],
+                ),
+                const SizedBox(height: 15.0),
+                Container(width: size.width, height: 1.0, color: Colors.grey),
+                const SizedBox(height: 15.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Total Payment', style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.w500, color: Colors.black)),
+                    Text('\$380.00', style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.w500, color: Colors.black)),
+                  ],
+                ), */
                 const Text("Total:"),
                 const Spacer(),
                 Consumer<CartProvider>(
@@ -194,7 +211,7 @@ class CheckoutCard extends StatelessWidget {
             SizedBox(height: getProportionateScreenHeight(20)),
             Center(
               child: SizedBox(
-                width: getProportionateScreenWidth(190),
+                //width: getProportionateScreenWidth(190),
                 child: DefaultButton(
                   text: "Check Out",
                   press: () {},

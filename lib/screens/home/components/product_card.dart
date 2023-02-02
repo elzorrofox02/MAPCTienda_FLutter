@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hellowork/models/Product.dart';
 
 import '../../../constants.dart';
+import 'package:hellowork/components/image_viewer.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({
@@ -28,13 +29,10 @@ class ProductCard extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(
-              width: double.infinity,
-              child: FadeInImage.assetNetwork(
-                placeholder: 'assets/images/product_0.png',
-                image: product.image,
-                height: 132,
-              ),
-            ),
+                width: double.infinity,
+                child: ImageLoads(
+                  image: product.image,
+                )),
             const SizedBox(height: defaultPadding / 2),
             Row(
               children: [
