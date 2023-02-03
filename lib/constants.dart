@@ -29,3 +29,9 @@ const LinearGradient mainButton = LinearGradient(colors: [
 ], begin: FractionalOffset.topCenter, end: FractionalOffset.bottomCenter);
 const Color darkGrey = Color(0xff202020);
 const Color yellow = Color(0xffFDC054);
+const Color colorButtonsAdd = Color(0xFF7B61FF);
+
+const OutlineInputBorder defaultOutlineInputBorder = OutlineInputBorder(
+  borderSide: BorderSide.none,
+  borderRadius: BorderRadius.all(Radius.circular(12)),
+);

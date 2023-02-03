@@ -64,6 +64,34 @@ class _State extends State<MyApp> {
             backgroundColor: Colors.transparent,
             elevation: 0,
           ),
+          inputDecorationTheme: const InputDecorationTheme(
+            filled: true,
+            fillColor: Color(0xFFF8F8F9),
+            hintStyle: TextStyle(
+              color: Color(0xFFB8B5C3),
+            ),
+            border: defaultOutlineInputBorder,
+            enabledBorder: defaultOutlineInputBorder,
+            focusedBorder: defaultOutlineInputBorder,
+          ),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: colorButtonsAdd,
+              minimumSize: const Size(double.infinity, 56),
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(12)),
+              ),
+            ),
+          ),
+          // outlinedButtonTheme: OutlinedButtonThemeData(
+          //   style: OutlinedButton.styleFrom(
+          //     foregroundColor: Colors.black,
+          //     minimumSize: const Size(double.infinity, 56),
+          //     shape: const RoundedRectangleBorder(
+          //       borderRadius: BorderRadius.all(Radius.circular(12)),
+          //     ),
+          //   ),
+          // ),
         ),
         home: Scaffold(
           body: _pages[selectedPageIndex],

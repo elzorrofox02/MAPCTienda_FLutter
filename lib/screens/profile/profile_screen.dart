@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hellowork/screens/profile/setting.dart';
 import 'package:hellowork/screens/profile/components/change_language_page.dart';
+import 'package:hellowork/screens/payment/payment_page.dart';
 
 typedef ProfileOptionTap = void Function();
 
@@ -52,7 +53,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ProfileOption.arrow(title: 'Notification', icon: _profileIcon('notification@2x.png')),
         ProfileOption.arrow(title: 'My Orders', routess: "/orders", icon: _profileIcon('Buy@2x.png')),
         ProfileOption.arrow(title: 'My Whitelish', icon: _profileIcon('heart@2x.png')),
-        ProfileOption.arrow(title: 'Payment', icon: _profileIcon('wallet@2x.png')),
+        ProfileOption.arrow(title: 'Payment', navigator: const PaymentPage(), icon: _profileIcon('wallet@2x.png')),
         ProfileOption.arrow(title: 'Security', icon: _profileIcon('shield_done@2x.png')),
         _languageOption(),
         _darkModel(),
