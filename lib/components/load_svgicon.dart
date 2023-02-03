@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class svgLoadi extends StatelessWidget {
-  const svgLoadi({
+class SvgLoad extends StatelessWidget {
+  const SvgLoad({
     Key? key,
     required this.src,
     this.color,

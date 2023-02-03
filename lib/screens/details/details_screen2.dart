@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-import '../../models/Product.dart';
+import '../../models/product.dart';
 import 'components/body.dart';
 import 'components/custom_app_bar.dart';
 //import 'package:flutter_svg/svg.dart';
 import 'package:hellowork/components/default_button.dart';
 import '../../size_config.dart';
-import 'package:hellowork/components/rounded_icon_btn.dart';
+//import 'package:hellowork/components/rounded_icon_btn.dart';
 import 'package:provider/provider.dart';
-import 'package:hellowork/mainProvider.dart';
+import 'package:hellowork/cart_povider.dart';
 import 'package:hellowork/constants.dart';
 
 class DetailsScreen2 extends StatelessWidget {
@@ -31,8 +31,8 @@ class DetailsScreen2 extends StatelessWidget {
         onPressed: () {
           // Respond to button press
         },
-        icon: Icon(Icons.add),
-        label: Text('Check out'),
+        icon: const Icon(Icons.add),
+        label: const Text('Check out'),
       ),
       // floatingActionButton: GestureDetector(
       //   onTap: () => {},

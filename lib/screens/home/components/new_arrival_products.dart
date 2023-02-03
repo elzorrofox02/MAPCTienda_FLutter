@@ -1,15 +1,16 @@
 import 'dart:convert';
+import 'dart:async';
 
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:hellowork/models/Product.dart';
+import 'package:hellowork/models/product.dart';
 //import 'package:hellowork/screens/details/details_screen.dart';
 
 import '../../../constants.dart';
 //import 'product_card.dart';
 import 'product_card2.dart';
 import 'section_title.dart';
-import 'ShowAllProducts.dart';
+import 'show_all_products.dart';
 
 class NewArrivalProducts extends StatefulWidget {
   const NewArrivalProducts({
@@ -25,10 +26,15 @@ class _NewArrivalProductsState extends State<NewArrivalProducts> {
     final response = await http.get(Uri.parse("http://192.168.0.73:3000/item"));
     if (response.statusCode == 200) {
       String body = utf8.decode(response.bodyBytes);
-      final jsonData = jsonDecode(body)["items"];
+      final jsonData = jsonDecode(body)?["items"];
+
+      if (jsonData == null) return [];
+
       return jsonData.map<Product>(Product.fromJson).toList();
+
+      //List<Product> users = jsonData.map((l) => Product.fromMap(l)).toList();
     } else {
-      throw Exception("fallo algo");
+      return [];
     }
   }
 

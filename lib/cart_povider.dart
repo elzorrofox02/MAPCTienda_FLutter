@@ -1,25 +1,25 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-import 'package:hellowork/models/Cart.dart';
+import 'package:hellowork/models/cart.dart';
 
 class CartProvider with ChangeNotifier {
-  Map<String, mCart> _items = {};
+  Map<String, Mcart> _items = {};
 
-  Map<String, mCart> get items {
+  Map<String, Mcart> get items {
     return {..._items};
   }
 
   void addItem({required String productId, price, image, name, url, stock, qty}) {
     if (_items.containsKey(productId)) {
       if (_items[productId]!.qty < stock) {
-        _items.update(productId, (value) => mCart(id: value.id, name: value.name, price: value.price, qty: value.qty + 1, image: value.image, url: value.url, stock: value.stock));
+        _items.update(productId, (value) => Mcart(id: value.id, name: value.name, price: value.price, qty: value.qty + 1, image: value.image, url: value.url, stock: value.stock));
         notifyListeners();
       }
     } else {
       if (stock! > qty) {
         _items.putIfAbsent(
             productId,
-            () => mCart(
+            () => Mcart(
                   id: productId,
                   image: image.toString(),
                   name: name.toString(),

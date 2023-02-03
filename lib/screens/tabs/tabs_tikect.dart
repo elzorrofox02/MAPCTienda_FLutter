@@ -8,13 +8,13 @@ class ApptikeTabs extends StatelessWidget {
   const ApptikeTabs({super.key, required this.firstabs, required this.secondtabs});
   @override
   Widget build(BuildContext context) {
-    final size = SizeConfig.getSize(context);
+    //final size = SizeConfig.getSize(context);
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
       scrollDirection: Axis.horizontal,
       child: Container(
         padding: const EdgeInsets.all(3.5),
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(SizeConfig.getHeigth(50)), color: Color(0xFFF4F6FD)),
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(SizeConfig.getHeigth(50)), color: const Color(0xFFF4F6FD)),
         child: Row(
           children: [
             Container(

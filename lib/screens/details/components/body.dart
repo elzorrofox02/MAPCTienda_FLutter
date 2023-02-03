@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hellowork/models/Product.dart';
+import 'package:hellowork/models/product.dart';
 import 'color_dots.dart';
 import 'product_description.dart';
 import 'top_rounded_container.dart';
 import 'product_images.dart';
 import 'dart:math';
-import 'dart:convert';
 
 class Body extends StatefulWidget {
   const Body({Key? key, required this.product}) : super(key: key);
@@ -20,6 +19,7 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
 
   @override
   void initState() {
+    super.initState();
     controller = TabController(
       length: 4,
       vsync: this,
@@ -28,13 +28,8 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    final s = widget.product.optionSearch;
-
-    print("asssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
-    print("asssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
-    print("asssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
-    print("asssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
-    print(s.runtimeType);
+    //final s = widget.product.optionSearch;
+    //print(s.runtimeType);
     /* for (final mapEntry in s.entries) {
       final key = mapEntry.key;
       final value = mapEntry.value;
@@ -42,16 +37,16 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
       //Text(widget.product.optionSearch.toString();// Key: a, Value: 1 ...
     } */
 
-    List weightData = s.entries
-        .map((entry) => textOptions(
-              index: entry.key,
-              txt: entry.value,
-            ))
-        .toList();
+    // List weightData = s.entries
+    //     .map((entry) => TextOptions(
+    //           index: entry.key,
+    //           txt: entry.value,
+    //         ))
+    //     .toList();
 
     final List<Widget> items = List.generate(
         200,
-        (i) => rectangulo(
+        (i) => Rectangulo(
               index: i,
             ));
 
@@ -69,7 +64,7 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
                   pressOnSeeMore: () {},
                 ),
                 TopRoundedContainer(
-                  color: Color.fromARGB(255, 148, 14, 14),
+                  color: const Color.fromARGB(255, 148, 14, 14),
                   child: Column(
                     children: [
                       widget.product.colors.isNotEmpty ? ColorDots(product: widget.product) : const SizedBox.shrink(),
@@ -114,15 +109,15 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
             controller: controller,
             children: <Widget>[
               Center(child: Text(widget.product.description)),
-              Center(
-                child: Column(
-                  children: List.generate(weightData.length, (index) {
-                    return weightData[index];
-                  }),
-                ),
-              ),
-              Center(child: Text("Tab three")),
-              Center(child: Text("Tab three")),
+              const Center(
+                  // child: Column(
+                  //   children: List.generate(weightData.length, (index) {
+                  //     return weightData[index];
+                  //   }),
+                  // ),
+                  ),
+              const Center(child: Text("Tab three")),
+              const Center(child: Text("Tab three")),
             ],
           ),
         ),
@@ -159,43 +154,45 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
   }
 }
 
-class textOptions extends StatelessWidget {
-  const textOptions({super.key, required this.index, required this.txt});
+class TextOptions extends StatelessWidget {
+  const TextOptions({super.key, required this.index, required this.txt});
   final String index;
   final String txt;
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text("$index , ", style: TextStyle(color: Colors.white)),
+      child: Text("$index , ", style: const TextStyle(color: Colors.white)),
     );
   }
 }
 
-class rectangulo extends StatelessWidget {
-  const rectangulo({super.key, required this.index});
+class Rectangulo extends StatelessWidget {
+  const Rectangulo({super.key, required this.index});
   final int index;
 
   @override
   Widget build(BuildContext context) {
-    final rdn = new Random();
+    final rdn = Random();
 
     final r = rdn.nextInt(255);
     final b = rdn.nextInt(255);
     final g = rdn.nextInt(255);
-    // TODO: implement build
+
     return Container(
-      child: Center(
-        child: Text("hola $index", style: TextStyle(color: Colors.white)),
-      ),
       width: 150,
       height: 150,
       decoration: BoxDecoration(color: Color.fromRGBO(r, g, b, 1)),
+      child: Center(
+        child: Text("hola $index", style: const TextStyle(color: Colors.white)),
+      ),
     );
   }
 }
 
-class tabsss extends StatelessWidget {
+class TabsDetail extends StatelessWidget {
+  const TabsDetail({super.key});
+
   SliverAppBar showSliverAppBar(String screenTitle) {
     return SliverAppBar(
       backgroundColor: Colors.purple,

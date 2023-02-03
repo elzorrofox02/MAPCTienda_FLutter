@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hellowork/models/Product.dart';
+import 'package:hellowork/models/product.dart';
 import 'package:hellowork/components/image_viewer.dart';
 //import 'package:hellowork/screens/details/details_screen.dart';
 import 'package:hellowork/screens/details/details_screen2.dart';

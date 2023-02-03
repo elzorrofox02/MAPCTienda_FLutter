@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 //import 'package:day34/animation/FadeAnimation.dart';
-import 'package:hellowork/models/Product.dart';
+import 'package:hellowork/models/product.dart';
 
 import 'package:flutter/material.dart';
 
@@ -15,7 +15,7 @@ class Homescreens2 extends StatefulWidget {
   const Homescreens2({Key? key}) : super(key: key);
 
   @override
-  _ExplorePageState createState() => _ExplorePageState();
+  State<Homescreens2> createState() => _ExplorePageState();
 }
 
 class _ExplorePageState extends State<Homescreens2> with TickerProviderStateMixin {
@@ -35,13 +35,13 @@ class _ExplorePageState extends State<Homescreens2> with TickerProviderStateMixi
     Colors.purple,
     Colors.orange.shade200,
     Colors.blueGrey,
-    Color(0xFFFFC1D9),
+    const Color(0xFFFFC1D9),
   ];
 
   int _selectedColor = 0;
   int _selectedSize = 1;
 
-  var selectedRange = RangeValues(150.00, 1500.00);
+  var selectedRange = const RangeValues(150.00, 1500.00);
 
   @override
   void initState() {
@@ -76,15 +76,15 @@ class _ExplorePageState extends State<Homescreens2> with TickerProviderStateMixi
         backgroundColor: Colors.grey.shade50,
         flexibleSpace: FlexibleSpaceBar(
             collapseMode: CollapseMode.pin,
-            titlePadding: EdgeInsets.only(left: 20, right: 30, bottom: 100),
-            stretchModes: [
+            titlePadding: const EdgeInsets.only(left: 20, right: 30, bottom: 100),
+            stretchModes: const [
               StretchMode.zoomBackground,
               // StretchMode.fadeTitle
             ],
             title: AnimatedOpacity(
               opacity: _isScrolled ? 0.0 : 1.0,
-              duration: Duration(milliseconds: 500),
-              child: Text("Find your 2021 Collections",
+              duration: const Duration(milliseconds: 500),
+              child: const Text("Find your 2021 Collections",
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 28.0,
@@ -101,24 +101,24 @@ class _ExplorePageState extends State<Homescreens2> with TickerProviderStateMixi
           title: Row(
             children: [
               Expanded(
-                child: Container(
+                child: SizedBox(
                   height: 50,
                   child: TextField(
                     readOnly: true,
                     cursorColor: Colors.grey,
                     decoration: InputDecoration(
-                      contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                       filled: true,
                       fillColor: Colors.white,
-                      prefixIcon: Icon(Icons.search, color: Colors.black),
+                      prefixIcon: const Icon(Icons.search, color: Colors.black),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: BorderSide.none),
                       hintText: "Search e.g Cotton Sweatshirt",
-                      hintStyle: TextStyle(fontSize: 14, color: Colors.black),
+                      hintStyle: const TextStyle(fontSize: 14, color: Colors.black),
                     ),
                   ),
                 ),
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               Container(
                 height: 50,
                 width: 50,
@@ -127,7 +127,7 @@ class _ExplorePageState extends State<Homescreens2> with TickerProviderStateMixi
                   onPressed: () {
                     showFilterModal();
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.filter_list,
                     color: Colors.black,
                     size: 30,
@@ -141,7 +141,7 @@ class _ExplorePageState extends State<Homescreens2> with TickerProviderStateMixi
       SliverList(
         delegate: SliverChildListDelegate([
           Container(
-              padding: EdgeInsets.only(top: 20, left: 20),
+              padding: const EdgeInsets.only(top: 20, left: 20),
               height: 330,
               child: Column(children: [
                 Row(
@@ -188,6 +188,7 @@ class _ExplorePageState extends State<Homescreens2> with TickerProviderStateMixi
 
     setState(() {
       productList = jsonData.map<Product>(Product.fromJson).toList();
+      //productList = jsonData.map<Product>(Product.fromJson).toList();
       //productList = data['products'].map((data) => Product.fromJson(data)).toList();
     });
   }
@@ -198,27 +199,27 @@ class _ExplorePageState extends State<Homescreens2> with TickerProviderStateMixi
       child: GestureDetector(
         onTap: () {},
         child: Container(
-          margin: EdgeInsets.only(right: 20, bottom: 25),
+          margin: const EdgeInsets.only(right: 20, bottom: 25),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             color: Colors.white,
             boxShadow: [
               BoxShadow(
-                offset: Offset(5, 10),
+                offset: const Offset(5, 10),
                 blurRadius: 15,
                 color: Colors.grey.shade200,
               )
             ],
           ),
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
+              SizedBox(
                 height: 150,
                 child: Stack(
                   children: [
-                    Container(
+                    SizedBox(
                       width: double.infinity,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(15),
@@ -239,8 +240,8 @@ class _ExplorePageState extends State<Homescreens2> with TickerProviderStateMixi
                         onPressed: () {
                           addToCartModal();
                         },
-                        padding: EdgeInsets.all(5),
-                        child: Center(
+                        padding: const EdgeInsets.all(5),
+                        child: const Center(
                             child: Icon(
                           Icons.shopping_cart,
                           color: Colors.white,
@@ -251,17 +252,17 @@ class _ExplorePageState extends State<Homescreens2> with TickerProviderStateMixi
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Text(
                 product.name,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black,
                   fontSize: 18,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Row(
@@ -275,8 +276,8 @@ class _ExplorePageState extends State<Homescreens2> with TickerProviderStateMixi
                     ),
                   ),
                   Text(
-                    "\$ " + product.price.toString() + '.00',
-                    style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.w800),
+                    "\$ ${product.price.toString()} .00",
+                    style: const TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.w800),
                   ),
                 ],
               ),
@@ -291,11 +292,11 @@ class _ExplorePageState extends State<Homescreens2> with TickerProviderStateMixi
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.white,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20))),
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20))),
       builder: (context) {
         return StatefulBuilder(builder: (context, setState) {
           return Container(
-            padding: EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 20),
+            padding: const EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 20),
             height: MediaQuery.of(context).size.height * 0.8,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -303,7 +304,7 @@ class _ExplorePageState extends State<Homescreens2> with TickerProviderStateMixi
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    const Text(
                       'Filter',
                       style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
                     ),
@@ -315,26 +316,26 @@ class _ExplorePageState extends State<Homescreens2> with TickerProviderStateMixi
                       height: 40,
                       color: Colors.grey.shade300,
                       elevation: 0,
-                      padding: EdgeInsets.all(0),
+                      padding: const EdgeInsets.all(0),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
-                      child: Icon(
+                      child: const Icon(
                         Icons.close,
                         color: Colors.black,
                       ),
                     )
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                Text(
+                const Text(
                   "Color",
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                Container(
+                SizedBox(
                   height: 60,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
@@ -347,14 +348,14 @@ class _ExplorePageState extends State<Homescreens2> with TickerProviderStateMixi
                           });
                         },
                         child: AnimatedContainer(
-                          duration: Duration(milliseconds: 300),
-                          margin: EdgeInsets.only(right: 10),
+                          duration: const Duration(milliseconds: 300),
+                          margin: const EdgeInsets.only(right: 10),
                           decoration: BoxDecoration(color: _selectedColor == index ? colors[index] : colors[index].withOpacity(0.5), shape: BoxShape.circle),
                           width: 40,
                           height: 40,
                           child: Center(
                             child: _selectedColor == index
-                                ? Icon(
+                                ? const Icon(
                                     Icons.check,
                                     color: Colors.white,
                                   )
@@ -365,17 +366,17 @@ class _ExplorePageState extends State<Homescreens2> with TickerProviderStateMixi
                     },
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                Text(
+                const Text(
                   'Size',
                   style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                Container(
+                SizedBox(
                   height: 60,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
@@ -388,8 +389,8 @@ class _ExplorePageState extends State<Homescreens2> with TickerProviderStateMixi
                           });
                         },
                         child: AnimatedContainer(
-                          duration: Duration(milliseconds: 500),
-                          margin: EdgeInsets.only(right: 10),
+                          duration: const Duration(milliseconds: 500),
+                          margin: const EdgeInsets.only(right: 10),
                           decoration: BoxDecoration(color: _selectedSize == index ? Colors.yellow[800] : Colors.grey.shade200, shape: BoxShape.circle),
                           width: 40,
                           height: 40,
@@ -405,13 +406,13 @@ class _ExplorePageState extends State<Homescreens2> with TickerProviderStateMixi
                   ),
                 ),
                 // Slider Price Renge filter
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    const Text(
                       'Price Range',
                       style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
                     ),
@@ -431,7 +432,7 @@ class _ExplorePageState extends State<Homescreens2> with TickerProviderStateMixi
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 RangeSlider(
@@ -448,7 +449,7 @@ class _ExplorePageState extends State<Homescreens2> with TickerProviderStateMixi
                     onChanged: (RangeValues values) {
                       setState(() => selectedRange = values);
                     }),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 button('Filter', () {})
@@ -463,26 +464,26 @@ class _ExplorePageState extends State<Homescreens2> with TickerProviderStateMixi
   addToCartModal() {
     return showModalBottomSheet(
         context: context,
-        transitionAnimationController: AnimationController(duration: Duration(milliseconds: 400), vsync: this),
+        transitionAnimationController: AnimationController(duration: const Duration(milliseconds: 400), vsync: this),
         builder: (context) => StatefulBuilder(
               builder: (context, setState) {
                 return Container(
                   height: 350,
-                  padding: EdgeInsets.all(20),
-                  decoration: BoxDecoration(
+                  padding: const EdgeInsets.all(20),
+                  decoration: const BoxDecoration(
                     color: Colors.white,
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         "Color",
                         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
-                      Container(
+                      SizedBox(
                         height: 60,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
@@ -495,14 +496,14 @@ class _ExplorePageState extends State<Homescreens2> with TickerProviderStateMixi
                                 });
                               },
                               child: AnimatedContainer(
-                                duration: Duration(milliseconds: 300),
-                                margin: EdgeInsets.only(right: 10),
+                                duration: const Duration(milliseconds: 300),
+                                margin: const EdgeInsets.only(right: 10),
                                 decoration: BoxDecoration(color: _selectedColor == index ? colors[index] : colors[index].withOpacity(0.5), shape: BoxShape.circle),
                                 width: 40,
                                 height: 40,
                                 child: Center(
                                   child: _selectedColor == index
-                                      ? Icon(
+                                      ? const Icon(
                                           Icons.check,
                                           color: Colors.white,
                                         )
@@ -513,17 +514,17 @@ class _ExplorePageState extends State<Homescreens2> with TickerProviderStateMixi
                           },
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
-                      Text(
+                      const Text(
                         "Size",
                         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
-                      Container(
+                      SizedBox(
                         height: 60,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
@@ -536,8 +537,8 @@ class _ExplorePageState extends State<Homescreens2> with TickerProviderStateMixi
                                 });
                               },
                               child: AnimatedContainer(
-                                duration: Duration(milliseconds: 500),
-                                margin: EdgeInsets.only(right: 10),
+                                duration: const Duration(milliseconds: 500),
+                                margin: const EdgeInsets.only(right: 10),
                                 decoration: BoxDecoration(color: _selectedSize == index ? Colors.yellow[800] : Colors.grey.shade200, shape: BoxShape.circle),
                                 width: 40,
                                 height: 40,
@@ -552,7 +553,7 @@ class _ExplorePageState extends State<Homescreens2> with TickerProviderStateMixi
                           },
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       button('Add to Cart', () {
@@ -560,8 +561,8 @@ class _ExplorePageState extends State<Homescreens2> with TickerProviderStateMixi
 
                         // Let's show a snackbar when an item is added to the cart
                         final snackbar = SnackBar(
-                          content: Text("Item added to cart"),
-                          duration: Duration(seconds: 5),
+                          content: const Text("Item added to cart"),
+                          duration: const Duration(seconds: 5),
                           action: SnackBarAction(
                             label: 'Undo',
                             onPressed: () {},
@@ -588,7 +589,7 @@ class _ExplorePageState extends State<Homescreens2> with TickerProviderStateMixi
       child: Center(
         child: Text(
           text,
-          style: TextStyle(color: Colors.white, fontSize: 18),
+          style: const TextStyle(color: Colors.white, fontSize: 18),
         ),
       ),
     );

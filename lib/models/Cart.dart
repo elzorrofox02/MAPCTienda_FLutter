@@ -1,9 +1,9 @@
-class mCart {
+class Mcart {
   final String id, name, price, image, url;
   final int qty, stock;
 
-  mCart({required this.id, required this.name, required this.price, required this.qty, required this.url, required this.image, required this.stock});
-  mCart.fromMap(Map<dynamic, dynamic> data)
+  Mcart({required this.id, required this.name, required this.price, required this.qty, required this.url, required this.image, required this.stock});
+  Mcart.fromMap(Map<dynamic, dynamic> data)
       : id = data['id'],
         name = data['name'],
         price = data['price'],

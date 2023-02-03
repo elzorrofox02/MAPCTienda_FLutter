@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hellowork/models/Product.dart';
+import 'package:hellowork/models/product.dart';
 
 import '../../../constants.dart';
 import 'package:hellowork/components/image_viewer.dart';
@@ -47,7 +47,7 @@ class ProductCard extends StatelessWidget {
                 const SizedBox(width: defaultPadding / 4),
                 Text(
                   "\$ ${product.price.toString()}",
-                  style: Theme.of(context).textTheme.subtitle2,
+                  style: Theme.of(context).textTheme.titleSmall,
                 ),
               ],
             )

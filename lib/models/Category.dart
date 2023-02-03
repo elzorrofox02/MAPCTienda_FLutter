@@ -4,7 +4,7 @@ class Category {
   Category({required this.icon, required this.title});
 }
 
-List<Category> demo_categories = [
+List<Category> demoCategories = [
   Category(
     icon: "assets/icons/dress.svg",
     title: "Dress",
@@ -56,5 +56,5 @@ List<Category> demo_categories = [
   Category(
     icon: "assets/icons/Tshirt.svg",
     title: "Tshirt",
-  ),  
+  ),
 ];

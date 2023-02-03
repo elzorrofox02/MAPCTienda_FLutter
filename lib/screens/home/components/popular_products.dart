@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hellowork/models/Product.dart';
+import 'package:hellowork/models/product.dart';
 import 'package:hellowork/screens/details/details_screen.dart';
 
 import '../../../constants.dart';
@@ -27,16 +27,16 @@ class PopularProducts extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: List.generate(
-              demo_product.length,
+              demoProduct.length,
               (index) => Padding(
                 padding: const EdgeInsets.only(right: defaultPadding),
                 child: ProductCard(
-                  product: demo_product[index],
+                  product: demoProduct[index],
                   press: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => DetailsScreen(product: demo_product[index]),
+                          builder: (context) => DetailsScreen(product: demoProduct[index]),
                         ));
                   },
                 ),

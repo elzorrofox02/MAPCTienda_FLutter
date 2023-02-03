@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hellowork/models/Product.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hellowork/models/product.dart';
+
 import 'package:hellowork/components/image_viewer.dart';
 
 import '../../../constants.dart';
@@ -23,8 +23,8 @@ class _ProductImagesState extends State<ProductImages> {
 
   @override
   Widget build(BuildContext context) {
-    var Img;
-    widget.product.images.isEmpty ? Img = widget.product.image : Img = widget.product.images[selectedImage];
+    //var Img;
+    //widget.product.images.isEmpty ? Img = widget.product.image : Img = widget.product.images[selectedImage];
     return Column(
       children: [
         SizedBox(

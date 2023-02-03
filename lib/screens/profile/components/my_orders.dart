@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:hellowork/screens/tabs/TabsTikect2.dart';
+
 import 'package:hellowork/size_config.dart';
 
-class profileOrders extends StatefulWidget {
-  const profileOrders({super.key});
+import 'package:hellowork/screens/tabs/tabs_tikect_two.dart';
+
+class ProfileOrders extends StatefulWidget {
+  const ProfileOrders({super.key});
   @override
-  State<profileOrders> createState() => _StateprofileOrders();
+  State<ProfileOrders> createState() => _StateprofileOrders();
 }
 
-class _StateprofileOrders extends State<profileOrders> {
+class _StateprofileOrders extends State<ProfileOrders> {
   @override
   Widget build(BuildContext context) {
-    final size = SizeConfig.getSize(context);
+    //final size = SizeConfig.getSize(context);
     return Scaffold(
       body: Stack(
         children: [

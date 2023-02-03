@@ -1,20 +1,28 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 
-import 'package:hellowork/screens/tabs/TabsTikect.dart';
-import 'package:hellowork/screens/home/home_screen2.dart';
+//import 'package:flutter_application_1/app_properties.dart';
+//import 'package:flutter_application_1/screens/shop/check_out_page.dart';+
 
-class test extends StatefulWidget {
-  const test({Key? key}) : super(key: key);
+//import 'package:hellowork/components/image_viewer.dart';
+
+import 'package:hellowork/screens/payment/payment_page.dart';
+
+class Test extends StatefulWidget {
+  const Test({Key? key}) : super(key: key);
 
   @override
-  _ExplorePageState createState() => _ExplorePageState();
+  State<Test> createState() => _ExplorePageState();
 }
 
-class _ExplorePageState extends State<test> {
+class _ExplorePageState extends State<Test> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    return Homescreens2();
+    return SafeArea(
+      child: TextButton(
+          onPressed: () {
+            Navigator.of(context).push(MaterialPageRoute(builder: (_) => const PaymentPage()));
+          },
+          child: const Text("Abreme")),
+    );
   }
 }

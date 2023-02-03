@@ -12,7 +12,7 @@ class ApptikeTabs2 extends StatelessWidget {
     return FittedBox(
       child: Container(
         padding: const EdgeInsets.all(3.5),
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(SizeConfig.getHeigth(50)), color: Color(0xFFF4F6FD)),
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(SizeConfig.getHeigth(50)), color: const Color(0xFFF4F6FD)),
         child: Row(
           children: [
             Container(

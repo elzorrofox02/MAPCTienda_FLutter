@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:hellowork/constants.dart';
 
 import '../../../size_config.dart';
@@ -11,7 +11,7 @@ class CustomAppBar extends StatelessWidget {
 
   @override
   // AppBar().preferredSize.height provide us the height that appy on our app bar
-  Size get preferredSize => Size.fromHeight(AppBar().preferredSize.height);
+  //Size get preferredSize => Size.fromHeight(AppBar().preferredSize.height);
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +35,8 @@ class CustomAppBar extends StatelessWidget {
                   onPressed: () => Navigator.pop(context),
                   child: IconButton(
                     padding: EdgeInsets.zero,
-                    constraints: BoxConstraints(),
-                    icon: Icon(Icons.arrow_back),
+                    constraints: const BoxConstraints(),
+                    icon: const Icon(Icons.arrow_back),
                     color: Colors.black,
                     onPressed: () => Navigator.pop(context),
                   ),
@@ -52,19 +52,11 @@ class CustomAppBar extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  Text(
-                    "$rating",
-                    style: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  const SizedBox(width: 5),
                   IconButton(
                     padding: EdgeInsets.zero,
-                    constraints: BoxConstraints(),
-                    icon: Icon(Icons.star_rate_rounded),
-                    color: Colors.yellow,
+                    constraints: const BoxConstraints(),
+                    icon: const Icon(Icons.favorite_border), //Icons.favorite
+                    color: Colors.red,
                     onPressed: () {},
                   ),
                   /* const Icon(

@@ -15,7 +15,7 @@ class ImageLoads extends StatelessWidget {
         //image: product.image,
         image: 'assets/images/product_0.png',
         imageErrorBuilder: (context, exception, stackTrace) {
-          return Container(
+          return SizedBox(
             width: 100.0,
             height: 100.0,
             child: SvgPicture.asset("assets/icons/Search.svg"),

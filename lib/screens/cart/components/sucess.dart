@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
-class test extends StatefulWidget {
-  const test({Key? key}) : super(key: key);
+class SuccessPay extends StatefulWidget {
+  const SuccessPay({Key? key}) : super(key: key);
 
   @override
-  _PaymentSuccessState createState() => _PaymentSuccessState();
+  State<SuccessPay> createState() => _PaymentSuccessState();
 }
 
-class _PaymentSuccessState extends State<test> {
+class _PaymentSuccessState extends State<SuccessPay> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
         body: Container(
-          padding: EdgeInsets.all(40.0),
+          padding: const EdgeInsets.all(40.0),
           width: double.infinity,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -23,14 +23,14 @@ class _PaymentSuccessState extends State<test> {
                 'https://ouch-cdn2.icons8.com/7fkWk5J2YcodnqGn62xOYYfkl6qhmsCfT2033W-FjaA/rs:fit:784:784/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9zdmcvMjU5/LzRkM2MyNzJlLWFh/MmQtNDA3Ni04YzU0/LTY0YjNiMzQ4NzQw/OS5zdmc.png',
                 width: 250,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 50.0,
               ),
-              Text(
+              const Text(
                 'Payment Success! 🥳',
                 style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20.0,
               ),
               Text(
@@ -38,7 +38,7 @@ class _PaymentSuccessState extends State<test> {
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 16.0, color: Colors.grey.shade700),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 140.0,
               ),
               MaterialButton(
@@ -48,17 +48,17 @@ class _PaymentSuccessState extends State<test> {
                 splashColor: Colors.yellow[700],
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 color: Colors.yellow[800],
-                child: Center(
+                child: const Center(
                   child: Text(
                     "Back to Home",
                     style: TextStyle(color: Colors.white, fontSize: 16),
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20.0,
               ),
-              Text(
+              const Text(
                 'Thank you for shopping with us.',
                 style: TextStyle(fontSize: 14.0, color: Colors.grey),
               ),

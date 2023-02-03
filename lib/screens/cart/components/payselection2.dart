@@ -2,16 +2,17 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-class payselection2 extends StatefulWidget {
-  const payselection2({Key? key}) : super(key: key);
+class PaySelection2 extends StatefulWidget {
+  const PaySelection2({Key? key}) : super(key: key);
 
   @override
-  _PaymentPageState createState() => _PaymentPageState();
+  State<PaySelection2> createState() => _PaymentPageState();
 }
 
-class _PaymentPageState extends State<payselection2> {
+class _PaymentPageState extends State<PaySelection2> {
   int activeCard = 0;
   bool _isLoading = false;
+  // ignore: unused_field
   late Timer _timer;
 
   pay() {
@@ -20,7 +21,7 @@ class _PaymentPageState extends State<payselection2> {
     });
 
     const oneSec = Duration(seconds: 2);
-    _timer = new Timer.periodic(
+    _timer = Timer.periodic(
       oneSec,
       (Timer timer) {
         setState(() {
@@ -278,10 +279,10 @@ class _PaymentPageState extends State<payselection2> {
                   color: Colors.yellow[800],
                   child: Center(
                     child: _isLoading
-                        ? Container(
+                        ? const SizedBox(
                             width: 20,
                             height: 20,
-                            child: const CircularProgressIndicator(
+                            child: CircularProgressIndicator(
                               backgroundColor: Colors.white,
                               strokeWidth: 3,
                               color: Colors.black,

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-class paySelection extends StatefulWidget {
-  const paySelection({Key? key}) : super(key: key);
+class PaySelection extends StatefulWidget {
+  const PaySelection({Key? key}) : super(key: key);
 
   @override
-  State<paySelection> createState() => _OrderConfirmScreenState();
+  State<PaySelection> createState() => _OrderConfirmScreenState();
 }
 
-enum selection { visa, paypal, binance }
+enum Selection { visa, paypal, binance }
 
-class _OrderConfirmScreenState extends State<paySelection> {
-  selection? _selection = selection.visa;
+class _OrderConfirmScreenState extends State<PaySelection> {
+  Selection? _selection = Selection.visa;
 
   @override
   void initState() {
@@ -19,7 +19,7 @@ class _OrderConfirmScreenState extends State<paySelection> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    //Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         leading: const Icon(Icons.arrow_back_ios_outlined, color: Colors.black),
@@ -33,22 +33,22 @@ class _OrderConfirmScreenState extends State<paySelection> {
               Container(
                 //padding: EdgeInsets.all(20.0),
                 decoration: BoxDecoration(
-                  border: _selection == selection.visa ? Border.all(width: 1.0, color: Colors.black) : Border.all(width: 0.3, color: Colors.grey),
+                  border: _selection == Selection.visa ? Border.all(width: 1.0, color: Colors.black) : Border.all(width: 0.3, color: Colors.grey),
                   borderRadius: const BorderRadius.all(Radius.circular(5.0)),
                   color: Colors.transparent,
                 ),
-                child: RadioListTile<selection>(
+                child: RadioListTile<Selection>(
                   secondary: Image.asset('assets/icons/pay/visa.png'),
                   controlAffinity: ListTileControlAffinity.leading,
                   title: Text(
                     'Tarjeta Credito',
                     style: TextStyle(
-                      color: _selection == selection.visa ? Colors.black : Colors.grey,
+                      color: _selection == Selection.visa ? Colors.black : Colors.grey,
                     ),
                   ),
-                  value: selection.visa,
+                  value: Selection.visa,
                   groupValue: _selection,
-                  onChanged: (selection? value) {
+                  onChanged: (Selection? value) {
                     setState(() {
                       _selection = value;
                     });
@@ -58,22 +58,22 @@ class _OrderConfirmScreenState extends State<paySelection> {
               const SizedBox(height: 15.0),
               Container(
                 decoration: BoxDecoration(
-                  border: _selection == selection.paypal ? Border.all(width: 1.0, color: Colors.black) : Border.all(width: 0.3, color: Colors.grey),
+                  border: _selection == Selection.paypal ? Border.all(width: 1.0, color: Colors.black) : Border.all(width: 0.3, color: Colors.grey),
                   borderRadius: const BorderRadius.all(Radius.circular(5.0)),
                   color: Colors.transparent,
                 ),
-                child: RadioListTile<selection>(
+                child: RadioListTile<Selection>(
                   secondary: Image.asset('assets/icons/pay/paypal.png'),
                   controlAffinity: ListTileControlAffinity.leading,
                   title: Text(
                     'Paypal',
                     style: TextStyle(
-                      color: _selection == selection.paypal ? Colors.black : Colors.grey,
+                      color: _selection == Selection.paypal ? Colors.black : Colors.grey,
                     ),
                   ),
-                  value: selection.paypal,
+                  value: Selection.paypal,
                   groupValue: _selection,
-                  onChanged: (selection? value) {
+                  onChanged: (Selection? value) {
                     setState(() {
                       _selection = value;
                     });
@@ -82,22 +82,22 @@ class _OrderConfirmScreenState extends State<paySelection> {
               ),
               Container(
                 decoration: BoxDecoration(
-                  border: _selection == selection.binance ? Border.all(width: 1.0, color: Colors.black) : Border.all(width: 0.3, color: Colors.grey),
+                  border: _selection == Selection.binance ? Border.all(width: 1.0, color: Colors.black) : Border.all(width: 0.3, color: Colors.grey),
                   borderRadius: const BorderRadius.all(Radius.circular(5.0)),
                   color: Colors.transparent,
                 ),
-                child: RadioListTile<selection>(
+                child: RadioListTile<Selection>(
                   secondary: Image.asset('assets/icons/pay/Binance_logo.jpg'),
                   controlAffinity: ListTileControlAffinity.leading,
                   title: Text(
                     'Binance Pay',
                     style: TextStyle(
-                      color: _selection == selection.binance ? Colors.black : Colors.grey,
+                      color: _selection == Selection.binance ? Colors.black : Colors.grey,
                     ),
                   ),
-                  value: selection.binance,
+                  value: Selection.binance,
                   groupValue: _selection,
-                  onChanged: (selection? value) {
+                  onChanged: (Selection? value) {
                     setState(() {
                       _selection = value;
                     });

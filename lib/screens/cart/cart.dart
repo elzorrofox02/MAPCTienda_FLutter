@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hellowork/models/Cart.dart';
+import 'package:hellowork/models/cart.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-import 'package:hellowork/mainProvider.dart';
+import 'package:hellowork/cart_povider.dart';
 import 'package:hellowork/components/default_button.dart';
 import 'package:hellowork/components/image_viewer.dart';
 import '../../constants.dart';
@@ -35,7 +35,7 @@ class _CartState extends State<Cart> {
             Consumer<CartProvider>(
               builder: (context, cart, child) => Text(
                 cart.totalItems,
-                style: Theme.of(context).textTheme.caption,
+                style: Theme.of(context).textTheme.bodySmall,
               ),
             ),
           ],
@@ -98,7 +98,7 @@ class CartCard extends StatelessWidget {
     Key? key,
     required this.cart,
   }) : super(key: key);
-  final mCart cart;
+  final Mcart cart;
 
   @override
   Widget build(BuildContext context) {
@@ -126,7 +126,7 @@ class CartCard extends StatelessWidget {
                 text: "\$${cart.price}",
                 style: const TextStyle(fontWeight: FontWeight.w600, color: kPrimaryColor),
                 children: [
-                  TextSpan(text: " x${cart.qty}", style: Theme.of(context).textTheme.bodyText1),
+                  TextSpan(text: " x${cart.qty}"),
                 ],
               ),
             )
@@ -202,7 +202,7 @@ class CheckoutCard extends StatelessWidget {
                 Consumer<CartProvider>(
                   builder: (context, cart, child) => Text(
                     cart.totalToPay,
-                    style: Theme.of(context).textTheme.caption,
+                    style: Theme.of(context).textTheme.bodySmall,
                   ),
                 ),
                 const SizedBox(width: 10),

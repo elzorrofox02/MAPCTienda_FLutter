@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:hellowork/constants.dart';
 import 'package:hellowork/screens/home/home_screen.dart';
 import 'package:hellowork/screens/tabs/tabs.dart';
-import 'package:hellowork/screens/profile/components/myOrders.dart';
+import 'package:hellowork/screens/profile/components/my_orders.dart';
 import 'package:hellowork/screens/cart/cart.dart';
 import 'package:hellowork/screens/profile/profile_screen.dart';
 
-import 'package:hellowork/mainProvider.dart';
+import 'package:hellowork/cart_povider.dart';
 
 import 'package:hellowork/screens/test.dart';
 
@@ -40,7 +40,7 @@ class _State extends State<MyApp> {
   int selectedPageIndex = 0;
 
   //final screen = [HomeScreen(), TabBarDemo(), Cart()];
-  static const List<Widget> _pages = <Widget>[HomeScreen(), profileOrders(), Cart(), ProfileScreen(), test()];
+  final List<Widget> _pages = const <Widget>[HomeScreen(), ProfileOrders(), Cart(), ProfileScreen(), Test()];
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +89,7 @@ class _State extends State<MyApp> {
                 currentIndex: selectedPageIndex,
                 items: <BottomNavigationBarItem>[
                   const BottomNavigationBarItem(
-                    icon: svgLoadi(src: "assets/icons/Shop.svg"),
+                    icon: SvgLoad(src: "assets/icons/Shop.svg"),
                     /* icon: Icon(
                       Icons.call,
                       color: Colors.black,
@@ -101,7 +101,7 @@ class _State extends State<MyApp> {
                       Icons.call,
                       color: Colors.black,
                     ), */
-                    icon: svgLoadi(src: "assets/icons/Category.svg"),
+                    icon: SvgLoad(src: "assets/icons/Category.svg"),
                     label: 'tabs',
                   ),
                   BottomNavigationBarItem(
@@ -133,7 +133,7 @@ class _State extends State<MyApp> {
                         ), */
                         //elevation: 0,
                       ),
-                      child: const svgLoadi(src: "assets/icons/Bag.svg"),
+                      child: const SvgLoad(src: "assets/icons/Bag.svg"),
                       /* const Icon(
                         Icons.shopping_cart,
                         color: Colors.black,
@@ -142,7 +142,7 @@ class _State extends State<MyApp> {
                     label: 'Cart',
                   ),
                   const BottomNavigationBarItem(
-                    icon: svgLoadi(src: "assets/icons/Profile.svg"),
+                    icon: SvgLoad(src: "assets/icons/Profile.svg"),
                     // icon: Icon(
                     //   Icons.call,
                     //   color: Colors.black,
@@ -151,7 +151,7 @@ class _State extends State<MyApp> {
                     label: 'Profile',
                   ),
                   const BottomNavigationBarItem(
-                    icon: svgLoadi(src: "assets/icons/Bookmark.svg"),
+                    icon: SvgLoad(src: "assets/icons/Bookmark.svg"),
                     /* icon: Icon(
                       Icons.person,
                       color: Colors.black,

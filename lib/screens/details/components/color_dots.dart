@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hellowork/models/Product.dart';
+import 'package:hellowork/models/product.dart';
 
 import '../../../constants.dart';
 import '../../../size_config.dart';

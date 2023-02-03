@@ -20,7 +20,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    print("build my home screenn");
     SizeConfig().init(context);
     return Scaffold(
       appBar: AppBar(
@@ -35,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(width: defaultPadding / 2),
             Text(
               "15/2 New Texas",
-              style: Theme.of(context).textTheme.bodyText1,
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
           ],
         ),
@@ -56,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             Text(
               "Explore",
-              style: Theme.of(context).textTheme.headline4!.copyWith(fontWeight: FontWeight.w500, color: Colors.black),
+              style: Theme.of(context).textTheme.headlineMedium!.copyWith(fontWeight: FontWeight.w500, color: Colors.black),
             ),
             const Text(
               "best Outfits for you",

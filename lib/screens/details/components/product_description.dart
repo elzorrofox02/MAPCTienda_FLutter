@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hellowork/models/Product.dart';
+
+import 'package:hellowork/models/product.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 import '../../../constants.dart';
@@ -25,7 +25,7 @@ class ProductDescription extends StatelessWidget {
         children: [
           Text(
             product.name,
-            style: Theme.of(context).textTheme.headline6,
+            style: Theme.of(context).textTheme.titleLarge,
           ),
           const SizedBox(height: 10),
           Row(

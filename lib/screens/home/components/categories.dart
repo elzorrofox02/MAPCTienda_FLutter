@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hellowork/models/Category.dart';
+import 'package:hellowork/models/category.dart';
 
 import '../../../constants.dart';
 
@@ -16,10 +16,10 @@ class Categories extends StatelessWidget {
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         shrinkWrap: true,
-        itemCount: demo_categories.length,
+        itemCount: demoCategories.length,
         itemBuilder: (context, index) => CategoryCard(
-          icon: demo_categories[index].icon,
-          title: demo_categories[index].title,
+          icon: demoCategories[index].icon,
+          title: demoCategories[index].title,
           press: () {},
         ),
         separatorBuilder: (context, index) => const SizedBox(width: defaultPadding),
@@ -41,7 +41,6 @@ class CategoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("categorio ${this.title}");
     return OutlinedButton(
       onPressed: press,
       style: OutlinedButton.styleFrom(
@@ -57,7 +56,7 @@ class CategoryCard extends StatelessWidget {
             const SizedBox(height: defaultPadding / 2),
             Text(
               title,
-              style: Theme.of(context).textTheme.subtitle2,
+              style: Theme.of(context).textTheme.titleSmall,
             )
           ],
         ),

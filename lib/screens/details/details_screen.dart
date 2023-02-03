@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hellowork/constants.dart';
-import 'package:hellowork/models/Product.dart';
+import 'package:hellowork/models/product.dart';
 import 'package:provider/provider.dart';
-import 'package:hellowork/mainProvider.dart';
+import 'package:hellowork/cart_povider.dart';
 
 import 'components/color_dot.dart';
 
@@ -14,9 +14,7 @@ class DetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(product);
     return Scaffold(
-      backgroundColor: product.bgColor,
       appBar: AppBar(
         leading: const BackButton(color: Colors.black),
         actions: [
@@ -59,13 +57,13 @@ class DetailsScreen extends StatelessWidget {
                       Expanded(
                         child: Text(
                           product.name,
-                          style: Theme.of(context).textTheme.headline6,
+                          style: Theme.of(context).textTheme.titleLarge,
                         ),
                       ),
                       const SizedBox(width: defaultPadding),
                       Text(
                         "\$ ${product.price.toString()}",
-                        style: Theme.of(context).textTheme.headline6,
+                        style: Theme.of(context).textTheme.titleLarge,
                       ),
                     ],
                   ),
@@ -76,7 +74,7 @@ class DetailsScreen extends StatelessWidget {
                       )),
                   Text(
                     "Colors",
-                    style: Theme.of(context).textTheme.subtitle2,
+                    style: Theme.of(context).textTheme.titleSmall,
                   ),
                   const SizedBox(height: defaultPadding / 2),
                   Row(
