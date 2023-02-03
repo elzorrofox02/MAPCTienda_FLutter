@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hellowork/screens/profile/setting.dart';
+import 'package:hellowork/screens/profile/components/change_language_page.dart';
 
 typedef ProfileOptionTap = void Function();
 
@@ -6,6 +8,7 @@ class ProfileOption {
   String title;
   String icon;
   dynamic routess;
+  dynamic navigator;
   Color? titleColor;
   ProfileOptionTap? onClick;
   Widget? trailing;
@@ -15,6 +18,7 @@ class ProfileOption {
     required this.icon,
     this.onClick,
     this.routess,
+    this.navigator,
     this.titleColor,
     this.trailing,
   });
@@ -24,6 +28,7 @@ class ProfileOption {
     required this.icon,
     this.onClick,
     this.routess,
+    this.navigator,
     this.titleColor = const Color(0xFF212121),
     this.trailing = const Image(image: AssetImage('assets/icons/profile/arrow_right@2x.png'), width: 24, height: 24),
   });
@@ -42,7 +47,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   static _profileIcon(String last) => 'assets/icons/profile/$last';
   bool _isDark = false;
   get datas => <ProfileOption>[
-        ProfileOption.arrow(title: 'Edit Profile', icon: _profileIcon('user@2x.png')),
+        ProfileOption.arrow(title: 'Edit Profile', navigator: const SettingsPage(), icon: _profileIcon('user@2x.png')),
         ProfileOption.arrow(title: 'Adress', icon: _profileIcon('location@2x.png')),
         ProfileOption.arrow(title: 'Notification', icon: _profileIcon('notification@2x.png')),
         ProfileOption.arrow(title: 'My Orders', routess: "/orders", icon: _profileIcon('Buy@2x.png')),
@@ -62,6 +67,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ];
 
   _languageOption() => ProfileOption(
+      navigator: const ChangeLanguagePage(),
       title: 'Language',
       //routess: "/orders",
       icon: _profileIcon('more_circle@2x.png'),
@@ -109,10 +115,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         slivers: [
           const SliverList(
             delegate: SliverChildListDelegate.fixed([
-              Padding(
-                padding: EdgeInsets.only(top: 30),
-                child: ProfileHeader(),
-              ),
+              ProfileHeader(),
             ]),
           ),
           _buildBody(),
@@ -146,6 +149,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       trailing: data.trailing,
       onTap: () {
         if (data.routess != null) Navigator.pushNamed(context, data.routess);
+        if (data.navigator != null) Navigator.of(context).push(MaterialPageRoute(builder: (_) => data.navigator));
       },
     );
   }
@@ -158,7 +162,7 @@ class ProfileHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: 30),
+        const SizedBox(height: 10),
         Stack(
           children: [
             const CircleAvatar(
