@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:hellowork/screens/profile/setting.dart';
+import 'package:hellowork/screens/profile/profile_data.dart';
 import 'package:hellowork/screens/profile/components/change_language_page.dart';
-import 'package:hellowork/screens/payment/payment_page.dart';
+import 'package:hellowork/screens/payment/components/add_new_card.dart';
+import 'package:hellowork/screens/address/adress_list.dart';
 
 typedef ProfileOptionTap = void Function();
 
 class ProfileOption {
   String title;
-  String icon;
+  dynamic icon;
   dynamic routess;
   dynamic navigator;
   Color? titleColor;
@@ -45,24 +47,25 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  static _profileIcon(String last) => 'assets/icons/profile/$last';
+  //static _profileIcon(String last) => 'assets/icons/profile/$last';
   bool _isDark = false;
   get datas => <ProfileOption>[
-        ProfileOption.arrow(title: 'Edit Profile', navigator: const SettingsPage(), icon: _profileIcon('user@2x.png')),
-        ProfileOption.arrow(title: 'Adress', icon: _profileIcon('location@2x.png')),
-        ProfileOption.arrow(title: 'Notification', icon: _profileIcon('notification@2x.png')),
-        ProfileOption.arrow(title: 'My Orders', routess: "/orders", icon: _profileIcon('Buy@2x.png')),
-        ProfileOption.arrow(title: 'My Whitelish', icon: _profileIcon('heart@2x.png')),
-        ProfileOption.arrow(title: 'Payment', navigator: const PaymentPage(), icon: _profileIcon('wallet@2x.png')),
-        ProfileOption.arrow(title: 'Security', icon: _profileIcon('shield_done@2x.png')),
+        ProfileOption.arrow(title: 'Mis datos', navigator: const ProfileData(), icon: const Icon(Icons.account_circle)),
+        ProfileOption.arrow(title: 'Notification', icon: const Icon(Icons.notifications_active)),
+        ProfileOption.arrow(title: 'Ordenes', routess: "/orders", icon: const Icon(Icons.library_books)),
+        ProfileOption.arrow(title: 'Favoritos', icon: const Icon(Icons.favorite)),
+        ProfileOption.arrow(title: 'Mi Dirreciones', navigator: const AdressListPage(), icon: const Icon(Icons.location_on)),
+        ProfileOption.arrow(title: 'Mi Tarjetas', navigator: const AddNewCardScreen(), icon: const Icon(Icons.credit_card)),
+        ProfileOption.arrow(title: 'Security', icon: const Icon(Icons.lock)),
+        ProfileOption.arrow(title: 'Preferencias', navigator: const SettingsPage(), icon: const Icon(Icons.visibility)),
         _languageOption(),
         _darkModel(),
-        ProfileOption.arrow(title: 'Help Center', icon: _profileIcon('info_square@2x.png')),
-        ProfileOption.arrow(title: 'Invite Friends', icon: _profileIcon('user@2x.png')),
+        ProfileOption.arrow(title: 'Help Center', icon: const Icon(Icons.help)),
+        ProfileOption.arrow(title: 'Invite Friends', icon: const Icon(Icons.group_add)),
         ProfileOption(
           title: 'Logout',
           routess: "/orders",
-          icon: _profileIcon('logout@2x.png'),
+          icon: const Icon(Icons.logout),
           titleColor: const Color(0xFFF75555),
         ),
       ];
@@ -71,7 +74,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       navigator: const ChangeLanguagePage(),
       title: 'Language',
       //routess: "/orders",
-      icon: _profileIcon('more_circle@2x.png'),
+      icon: const Icon(Icons.language),
       trailing: SizedBox(
         width: 150,
         child: Row(
@@ -90,7 +93,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   _darkModel() => ProfileOption(
       title: 'Dark Mode',
       // routess: "/orders",
-      icon: _profileIcon('show@2x.png'),
+      icon: const Icon(Icons.dark_mode),
       trailing: Switch(
         value: _isDark,
         activeColor: const Color(0xFF212121),
@@ -142,7 +145,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Widget _buildOption(BuildContext context, int index, ProfileOption data) {
     return ListTile(
-      leading: Image.asset(data.icon, scale: 2),
+      leading: data.icon,
+      //leading: Image.asset(data.icon, scale: 2),
       title: Text(
         data.title,
         style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18, color: data.titleColor),

@@ -35,3 +35,7 @@ const OutlineInputBorder defaultOutlineInputBorder = OutlineInputBorder(
   borderSide: BorderSide.none,
   borderRadius: BorderRadius.all(Radius.circular(12)),
 );
+
+const titleProfile = TextStyle(fontWeight: FontWeight.w400, fontSize: 16, color: Colors.black);
+
+const titleProfileRigth = TextStyle(fontWeight: FontWeight.w600, fontSize: 18, color: Colors.black);

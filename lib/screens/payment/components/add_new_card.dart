@@ -4,6 +4,7 @@ import 'package:hellowork/constants.dart';
 
 import 'package:hellowork/screens/payment/components/card_utilis.dart';
 import 'package:hellowork/screens/payment/components/input_formatters.dart';
+import 'package:hellowork/screens/payment/components/credit_cart.dart';
 
 class AddNewCardScreen extends StatefulWidget {
   const AddNewCardScreen({Key? key}) : super(key: key);
@@ -48,6 +49,7 @@ class _AddNewCardScreenState extends State<AddNewCardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text("New Card"),
@@ -58,11 +60,21 @@ class _AddNewCardScreenState extends State<AddNewCardScreen> {
           child: Column(
             children: [
               const Spacer(),
+              CreditCard(
+                color: null,
+                cvc: '',
+                date: '',
+                name: '',
+                number: creditCardController.text,
+              ),
               Form(
                 key: _formState,
                 child: Column(
                   children: [
                     TextFormField(
+                      onChanged: (val) {
+                        setState(() {});
+                      },
                       onSaved: (cardNum) {
                         _paymentCard.number = CardUtils.getCleanedNumber(cardNum!);
                       },

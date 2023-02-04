@@ -170,7 +170,7 @@ class _State extends State<MyApp> {
                     label: 'Cart',
                   ),
                   const BottomNavigationBarItem(
-                    icon: SvgLoad(src: "assets/icons/Profile.svg"),
+                    icon: Icon(Icons.person),
                     // icon: Icon(
                     //   Icons.call,
                     //   color: Colors.black,

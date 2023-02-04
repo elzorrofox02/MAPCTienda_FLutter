@@ -232,4 +232,27 @@ class CardUtils {
     }
     return cardType;
   }
+
+  static String? notEmpety(String? value) {
+    if (value == null || value.isEmpty) {
+      return Strings.fieldReq;
+    }
+    return null;
+  }
+
+  static String? validateEmail(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Enter your Email address';
+    }
+
+    if (!RegExp(r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$').hasMatch(value)) {
+      return 'Enter a Valid Email address';
+    }
+
+    // if (!isEmail(value) && !isPhone(value)) {
+    //   return 'Please enter a valid email or phone number.';
+    // }
+    // return null;
+    return null;
+  }
 }
