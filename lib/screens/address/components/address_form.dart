@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:hellowork/constants.dart';
 
 import 'package:hellowork/screens/payment/components/card_utilis.dart';
+import 'package:hellowork/models/adress_list.dart';
 
 class AddAddressForm extends StatefulWidget {
-  const AddAddressForm({Key? key}) : super(key: key);
+  //AddAddressForm({Key? key, this.id, this.numero, this.active, this.country, this.estate, this.city, this.muni, this.direction, this.personame, this.personamephone, this.empresa}) : super(key: key);
+
+  //String? id, numero, active, country, estate, city, muni, direction, personame, personamephone, empresa;
+  const AddAddressForm({super.key, this.adressListCard});
+  final AdressListCard? adressListCard;
 
   @override
   State<AddAddressForm> createState() => _ExplorePageState();
@@ -30,6 +35,8 @@ class _ExplorePageState extends State<AddAddressForm> {
 
   @override
   Widget build(BuildContext context) {
+    widget.adressListCard?.personame != null ? otherPerson = true : otherPerson = false;
+    widget.adressListCard?.empresa != null ? isCompany = true : isCompany = false;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
@@ -59,7 +66,8 @@ class _ExplorePageState extends State<AddAddressForm> {
                         onSaved: (cardNum) {
                           //_paymentCard.number = CardUtils.getCleanedNumber(cardNum!);
                         },
-                        controller: _controller,
+                        //controller: _controller,
+                        initialValue: widget.adressListCard?.country,
                         textInputAction: TextInputAction.next,
                         validator: CardUtils.notEmpety,
                         inputFormatters: const [],
@@ -77,6 +85,7 @@ class _ExplorePageState extends State<AddAddressForm> {
                           //_paymentCard.name = name;
                         },
                         validator: CardUtils.notEmpety,
+                        initialValue: widget.adressListCard?.estate,
                         textInputAction: TextInputAction.next,
                         decoration: const InputDecoration(
                           prefixIcon: Padding(
@@ -91,7 +100,7 @@ class _ExplorePageState extends State<AddAddressForm> {
                         onSaved: (name) {
                           //_paymentCard.name = name;
                         },
-                        keyboardType: TextInputType.datetime,
+                        initialValue: widget.adressListCard?.muni,
                         textInputAction: TextInputAction.next,
                         decoration: const InputDecoration(
                           prefixIcon: Padding(
@@ -106,7 +115,7 @@ class _ExplorePageState extends State<AddAddressForm> {
                         onSaved: (name) {
                           //_paymentCard.name = name;
                         },
-                        keyboardType: TextInputType.datetime,
+                        initialValue: widget.adressListCard?.numero,
                         textInputAction: TextInputAction.next,
                         decoration: const InputDecoration(
                           prefixIcon: Padding(
@@ -122,6 +131,7 @@ class _ExplorePageState extends State<AddAddressForm> {
                           //_paymentCard.name = name;
                         },
                         validator: CardUtils.notEmpety,
+                        initialValue: widget.adressListCard?.direction,
                         textInputAction: TextInputAction.next,
                         decoration: const InputDecoration(
                           prefixIcon: Padding(
@@ -136,6 +146,7 @@ class _ExplorePageState extends State<AddAddressForm> {
                         onSaved: (name) {
                           //_paymentCard.name = name;
                         },
+                        initialValue: widget.adressListCard?.personame,
                         validator: CardUtils.notEmpety,
                         textInputAction: TextInputAction.next,
                         decoration: const InputDecoration(
@@ -165,6 +176,7 @@ class _ExplorePageState extends State<AddAddressForm> {
                                 //_paymentCard.name = name;
                               },
                               validator: CardUtils.notEmpety,
+                              initialValue: widget.adressListCard?.personame,
                               textInputAction: TextInputAction.next,
                               decoration: const InputDecoration(
                                 prefixIcon: Padding(
@@ -179,6 +191,7 @@ class _ExplorePageState extends State<AddAddressForm> {
                               onSaved: (name) {
                                 //_paymentCard.name = name;
                               },
+                              initialValue: widget.adressListCard?.personamephone,
                               validator: CardUtils.notEmpety,
                               textInputAction: TextInputAction.next,
                               decoration: const InputDecoration(
@@ -209,6 +222,7 @@ class _ExplorePageState extends State<AddAddressForm> {
                                 //_paymentCard.name = name;
                               },
                               validator: CardUtils.notEmpety,
+                              initialValue: widget.adressListCard?.empresa,
                               textInputAction: TextInputAction.next,
                               decoration: const InputDecoration(
                                 prefixIcon: Padding(
@@ -216,21 +230,6 @@ class _ExplorePageState extends State<AddAddressForm> {
                                   child: Icon(Icons.person),
                                 ),
                                 hintText: "Persona que Recibe",
-                              ),
-                            ),
-                            const SizedBox(height: defaultPadding),
-                            TextFormField(
-                              onSaved: (name) {
-                                //_paymentCard.name = name;
-                              },
-                              validator: CardUtils.notEmpety,
-                              textInputAction: TextInputAction.next,
-                              decoration: const InputDecoration(
-                                prefixIcon: Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 10),
-                                  child: Icon(Icons.phone),
-                                ),
-                                hintText: "Numero Persona Resibe",
                               ),
                             ),
                           ],

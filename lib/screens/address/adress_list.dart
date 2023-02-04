@@ -86,8 +86,13 @@ class _State extends State<AdressListPage> {
                           //secondary: const Icon(Icons.more_vert),
                           secondary: PopupMenuButton(
                             onSelected: (value) {
-                              print(value);
-                              print(demoAdresslist[index].country);
+                              if (value == 0) {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => AddAddressForm(
+                                          adressListCard: demoAdresslist[index],
+                                        )));
+                              }
+
                               // _onMenuItemSelected(value as int);
                             },
                             offset: const Offset(0.0, 35),
@@ -100,10 +105,34 @@ class _State extends State<AdressListPage> {
                               ),
                             ),
                             itemBuilder: (ctx) => [
-                              _buildPopupMenuItem('Search', Icons.search, 0),
-                              _buildPopupMenuItem('Upload', Icons.upload, 1),
-                              _buildPopupMenuItem('Copy', Icons.copy, 2),
-                              _buildPopupMenuItem('Exit', Icons.exit_to_app, 3),
+                              PopupMenuItem(
+                                value: 0,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: const [
+                                    Icon(
+                                      Icons.edit,
+                                      color: Colors.black,
+                                    ),
+                                    Text("Editar"),
+                                  ],
+                                ),
+                              ),
+                              PopupMenuItem(
+                                value: 1,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: const [
+                                    Icon(
+                                      Icons.delete_forever,
+                                      color: Colors.red,
+                                    ),
+                                    Text("Borrar"),
+                                  ],
+                                ),
+                              )
+                              //_buildPopupMenuItem('Editar', Icons.edit, 0),
+                              //_buildPopupMenuItem('Borrar', Icons.delete, 1),
                             ],
                           ),
                         ),
@@ -117,19 +146,19 @@ class _State extends State<AdressListPage> {
         ));
   }
 
-  PopupMenuItem _buildPopupMenuItem(String title, IconData iconData, int position) {
-    return PopupMenuItem(
-      value: position,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Icon(
-            iconData,
-            color: Colors.black,
-          ),
-          Text(title),
-        ],
-      ),
-    );
-  }
+  // PopupMenuItem _buildPopupMenuItem(String title, IconData iconData, int position) {
+  //   return PopupMenuItem(
+  //     value: position,
+  //     child: Row(
+  //       mainAxisAlignment: MainAxisAlignment.spaceAround,
+  //       children: [
+  //         Icon(
+  //           iconData,
+  //           color: Colors.black,
+  //         ),
+  //         Text(title),
+  //       ],
+  //     ),
+  //   );
+  // }
 }

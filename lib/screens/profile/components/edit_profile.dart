@@ -81,8 +81,8 @@ class _ExplorePageState extends State<EditProfile> {
                       onSaved: (cardNum) {
                         //_paymentCard.number = CardUtils.getCleanedNumber(cardNum!);
                       },
-                      controller: _controller,
-                      //initialValue: widget.name,
+                      //controller: _controller,
+                      initialValue: widget.name,
                       textInputAction: TextInputAction.next,
                       validator: CardUtils.notEmpety,
                       inputFormatters: const [
