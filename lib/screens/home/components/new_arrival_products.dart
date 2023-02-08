@@ -21,6 +21,23 @@ class NewArrivalProducts extends StatefulWidget {
   _NewArrivalProductsState createState() => _NewArrivalProductsState();
 }
 
+/* class _NewArrivalProductsState extends State<NewArrivalProducts> {
+  Future<List<Product>> _getProduct() async {
+    final response = await http.get(Uri.parse("http://192.168.0.73:3000/item"));
+    if (response.statusCode == 200) {
+      String body = utf8.decode(response.bodyBytes);
+      final jsonData = jsonDecode(body)?["items"];
+
+      if (jsonData == null) return [];
+
+      return jsonData.map<Product>(Product.fromJson).toList();
+
+      //List<Product> users = jsonData.map((l) => Product.fromMap(l)).toList();
+    } else {
+      return [];
+    }
+  } */
+
 class _NewArrivalProductsState extends State<NewArrivalProducts> {
   Future<List<Product>> _getProduct() async {
     final response = await http.get(Uri.parse("http://192.168.0.73:3000/item"));

@@ -108,7 +108,7 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
           child: TabBarView(
             controller: controller,
             children: <Widget>[
-              Center(child: Text(widget.product.description)),
+              Center(child: Text(widget.product.description.toString())),
               const Center(
                   // child: Column(
                   //   children: List.generate(weightData.length, (index) {

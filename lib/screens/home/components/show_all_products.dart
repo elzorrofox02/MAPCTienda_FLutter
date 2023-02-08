@@ -11,29 +11,72 @@ class ShowAllProducts extends StatefulWidget {
     Key? key,
   }) : super(key: key);
   @override
-  // ignore: library_private_types_in_public_api
   State<ShowAllProducts> createState() => _ShowAllProductsState();
 }
 
 class _ShowAllProductsState extends State<ShowAllProducts> {
-  Future<List<Product>> _getProduct() async {
-    final response = await http.get(Uri.parse("http://192.168.0.73:3000/item"));
+  final scrollController = ScrollController();
+
+  bool isLoadingMore = false;
+  bool hasMore = true;
+  List<Product> post = [];
+  int page = 1;
+
+  @override
+  void initState() {
+    super.initState();
+    scrollController.addListener(_scrollController);
+    _getProduct();
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _getProduct() async {
+    const limit = 20;
+    final response = await http.get(Uri.parse("http://192.168.0.73:3000/search?q=televisor&page=$page"));
     if (response.statusCode == 200) {
       String body = utf8.decode(response.bodyBytes);
-      final jsonData = jsonDecode(body);
-      List<Product> productosS = [];
-      for (var item in jsonData["items"]) {
-        productosS.add(Product(id: item["_id"], image: item["image"]["path"], name: item["name"], price: "5.12", url: item["slug"], stock: item["cantidad"], colors: [], images: []));
-      }
-      return productosS;
+      final jsonData = jsonDecode(body)?["items"];
+
+      setState(() {
+        if (jsonData == null) hasMore = false;
+
+        isLoadingMore = false;
+        post = post + jsonData.map<Product>(Product.fromJson).toList();
+        page++;
+
+        if (jsonData.length < limit) {
+          hasMore = false;
+        }
+      });
     } else {
       throw Exception("fallo algo");
     }
   }
 
-  @override
-  void initState() {
-    super.initState();
+  Future<void> _scrollController() async {
+    if (isLoadingMore) return;
+    if (!hasMore) return;
+    if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
+      setState(() {
+        isLoadingMore = true;
+      });
+      await _getProduct();
+    }
+  }
+
+  Future refresh() async {
+    setState(() {
+      isLoadingMore = false;
+      hasMore = true;
+      page = 1;
+      post.clear();
+    });
+    _getProduct();
   }
 
   @override
@@ -50,29 +93,26 @@ class _ShowAllProductsState extends State<ShowAllProducts> {
             style: TextStyle(color: Colors.black),
           ),
         ),
-        body: FutureBuilder<List<Product>?>(
-          future: _getProduct(),
-          builder: (context, snapshot) {
-            if (snapshot.hasData && snapshot.connectionState == ConnectionState.done) {
-              return GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                ),
-                itemCount: snapshot.data!.length,
-                itemBuilder: (context, index) {
+        body: RefreshIndicator(
+          onRefresh: refresh,
+          child: GridView.builder(
+              controller: scrollController,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+              ),
+              itemCount: post.length + 1,
+              itemBuilder: (context, index) {
+                print(index);
+                if (index < post.length) {
+                  //return Text(post[index].name);
                   return ProductCard(
-                    product: snapshot.data![index],
+                    product: post[index],
                     press: () {},
                   );
-                },
-              );
-            }
-
-            /// handles others as you did on question
-            else {
-              return const CircularProgressIndicator();
-            }
-          },
+                } else {
+                  return Center(child: hasMore ? const CircularProgressIndicator() : const Text("No hay mas Resultados"));
+                }
+              }),
         ));
   }
 }

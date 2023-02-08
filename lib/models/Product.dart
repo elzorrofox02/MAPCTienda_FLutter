@@ -1,7 +1,33 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 
+class ProductData {
+  ProductData({
+    required this.totalItems,
+    required this.totalPages,
+    required this.data,
+  });
+
+  int totalItems;
+  int totalPages;
+  List<Product> data;
+
+  factory ProductData.fromJson(Map<String, dynamic> json) => ProductData(
+        totalItems: json["totalResult"]["totalCount"][0]["count"],
+        totalPages: json["pages"],
+        data: List<Product>.from(json["items"].map((x) => Product.fromJson(x))),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "totalItems": totalItems,
+        "totalPages": totalPages,
+        "data": List<dynamic>.from(data.map((x) => x.toJson())),
+      };
+}
+
 class Product {
-  final String id, image, name, url, price, description;
+  final String id, image, name, url, price;
+  final String? description;
   final int stock;
 
   //final dynamic optionSearch;
@@ -22,44 +48,32 @@ class Product {
     //this.optionSearch = "",
   });
 
-  // static Product fromJson(json) => Product(
-  //       id: json['_id'], image: json['image']["path"], name: json['name'], url: json['slug'], stock: json['cantidad'], price: json['price'].toString(), colors: [], images: json['image']["fotos"], description: json["description"],
-  //       //optionSearch: json["optionSearch"]
+  // factory Product.fromJson(Map<String, dynamic> json) => Product(
+  //       id: json['_id'],
+  //       image: json['image']["path"],
+  //       name: json['name'],
+  //       url: json['slug'],
+  //       stock: json['cantidad'],
+  //       price: json['price'].toString(),
+  //       colors: [],
+  //       images: json['image']["fotos"],
+  //       description: json["description"],
   //     );
 
   factory Product.fromJson(json) => Product(
-        id: json['_id'], image: json['image']["path"], name: json['name'], url: json['slug'], stock: json['cantidad'], price: json['price'].toString(), colors: [], images: json['image']["fotos"], description: json["description"],
+        id: json['_id'],
+        image: json['image']["path"],
+        name: json['name'],
+        url: json['slug'],
+        stock: json['cantidad'],
+        price: json['price'].toString(),
+        colors: [],
+        images: json['image']["fotos"],
+        description: json["description"],
         //optionSearch: json["optionSearch"]
       );
 
-  /* factory Product.fromJson(Map<String, dynamic> json) {
-    return Product(
-      id: json['_id'] as String,
-      image: json['image']["path"] as String,
-      name: json['name'] as String,
-      url: json['slug'] as String,
-      stock: json['cantidad'] as int,
-      price: json['price'] as String,
-      colors: [] as List<Color>,
-      images: json['image']["fotos"] as List<dynamic>,
-      description: json["description"] as String,
-    );
-  } */
-  /* factory Product.fromMap(Map<String, dynamic> map) {
-    return Product(
-      id: map['_id'] as String,
-      image: map['image']["path"] as String,
-      name: map['name'] as String,
-      url: map['slug'] as String,
-      stock: map['cantidad'] as int,
-      price: map['price'] as String,
-      colors: [] as List<Color>,
-      images: map['image']["fotos"] as List<dynamic>,
-      description: map["description"] as String,
-    );
-  }
-  @override
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toJson() => {
         'id': id,
         'image': image,
         'name': name,
@@ -70,7 +84,6 @@ class Product {
         'images': image,
         'description': description,
       };
-} */
 }
 
 List<Product> demoProduct = [
