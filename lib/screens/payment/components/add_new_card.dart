@@ -5,9 +5,15 @@ import 'package:hellowork/constants.dart';
 import 'package:hellowork/screens/payment/components/card_utilis.dart';
 import 'package:hellowork/screens/payment/components/input_formatters.dart';
 import 'package:hellowork/screens/payment/components/credit_cart.dart';
+import 'package:hellowork/models/list_card.dart';
 
 class AddNewCardScreen extends StatefulWidget {
-  const AddNewCardScreen({Key? key}) : super(key: key);
+  const AddNewCardScreen({
+    super.key,
+    //this.listCard
+  });
+
+  //final ListCard? listCard;
 
   @override
   State<AddNewCardScreen> createState() => _AddNewCardScreenState();
@@ -52,14 +58,20 @@ class _AddNewCardScreenState extends State<AddNewCardScreen> {
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text("New Card"),
+        iconTheme: const IconThemeData(
+          color: Colors.black,
+        ),
+        centerTitle: true,
+        title: const Text(
+          "Añadir Nueva Tarjeta",
+          style: TextStyle(color: darkGrey),
+        ),
       ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(defaultPadding),
           child: Column(
             children: [
-              const Spacer(),
               CreditCard(
                 color: null,
                 cvc: '',

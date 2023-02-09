@@ -102,7 +102,6 @@ class _ShowAllProductsState extends State<ShowAllProducts> {
               ),
               itemCount: post.length + 1,
               itemBuilder: (context, index) {
-                print(index);
                 if (index < post.length) {
                   //return Text(post[index].name);
                   return ProductCard(

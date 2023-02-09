@@ -5,6 +5,8 @@ import 'package:hellowork/screens/profile/components/change_language_page.dart';
 import 'package:hellowork/screens/payment/components/add_new_card.dart';
 import 'package:hellowork/screens/address/adress_list.dart';
 
+import 'package:hellowork/screens/payment/components/list_card_profile.dart';
+
 typedef ProfileOptionTap = void Function();
 
 class ProfileOption {
@@ -55,7 +57,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ProfileOption.arrow(title: 'Ordenes', routess: "/orders", icon: const Icon(Icons.library_books)),
         ProfileOption.arrow(title: 'Favoritos', icon: const Icon(Icons.favorite)),
         ProfileOption.arrow(title: 'Mi Dirreciones', navigator: const AdressListPage(), icon: const Icon(Icons.location_on)),
-        ProfileOption.arrow(title: 'Mi Tarjetas', navigator: const AddNewCardScreen(), icon: const Icon(Icons.credit_card)),
+        ProfileOption.arrow(title: 'Mi Tarjetas', navigator: const ListCardScreen(), icon: const Icon(Icons.credit_card)),
         ProfileOption.arrow(title: 'Security', icon: const Icon(Icons.lock)),
         ProfileOption.arrow(title: 'Preferencias', navigator: const SettingsPage(), icon: const Icon(Icons.visibility)),
         _languageOption(),
