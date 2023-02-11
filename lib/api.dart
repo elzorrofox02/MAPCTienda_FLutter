@@ -12,8 +12,8 @@ class ApiService {
       var url = Uri.parse(ApiConstants.baseUrl + ApiConstants.usersEndpoint);
       var response = await http.get(url);
       if (response.statusCode == 200) {
-        List<AdressListCard> _model = userModelFromJson(response.body);
-        return _model;
+        List<AdressListCard> model = userModelFromJson(response.body);
+        return model;
       }
     } catch (e) {
       // ignore: avoid_print

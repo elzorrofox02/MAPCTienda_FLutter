@@ -49,9 +49,9 @@ class _ListCardScreen extends State<ListCardScreen> {
                               //padding: const EdgeInsets.symmetric(vertical: 0.0),
                               alignment: Alignment.center,
                               child: demoListCard[index].brand.toString() == "invalid" || demoListCard[index].brand.toString() == "others"
-                                  ? Icon(Icons.credit_card)
+                                  ? const Icon(Icons.credit_card)
                                   : Image.asset('assets/icons/${demoListCard[index].brand.toString()}.png', errorBuilder: (context, error, stackTrace) {
-                                      return Icon(Icons.credit_card);
+                                      return const Icon(Icons.credit_card);
                                     })
                               // child: CircleAvatar(
                               //     backgroundImage: AssetImage("/assets/icons/${demoListCard[index].brand.toString()}.png"),
@@ -61,10 +61,7 @@ class _ListCardScreen extends State<ListCardScreen> {
                         //trailing: Icon(Icons.more_vert),
                         trailing: PopupMenuButton(
                           onSelected: (value) {
-                            if (value == 0) {
-                              print("/assets/icons/${demoListCard[index].brand.toString()}.png");
-                              print("hay que borrar");
-                            }
+                            if (value == 0) {}
 
                             // _onMenuItemSelected(value as int);
                           },

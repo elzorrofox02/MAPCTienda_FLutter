@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:hellowork/screens/profile/setting.dart';
 import 'package:hellowork/screens/profile/profile_data.dart';
 import 'package:hellowork/screens/profile/components/change_language_page.dart';
-import 'package:hellowork/screens/payment/components/add_new_card.dart';
 import 'package:hellowork/screens/address/adress_list.dart';
-
 import 'package:hellowork/screens/payment/components/list_card_profile.dart';
+import 'package:hellowork/screens/profile/components/my_orders.dart';
 
 typedef ProfileOptionTap = void Function();
 
@@ -54,7 +53,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   get datas => <ProfileOption>[
         ProfileOption.arrow(title: 'Mis datos', navigator: const ProfileData(), icon: const Icon(Icons.account_circle)),
         ProfileOption.arrow(title: 'Notification', icon: const Icon(Icons.notifications_active)),
-        ProfileOption.arrow(title: 'Ordenes', routess: "/orders", icon: const Icon(Icons.library_books)),
+        ProfileOption.arrow(title: 'Ordenes', navigator: const ProfileOrders(), icon: const Icon(Icons.library_books)),
         ProfileOption.arrow(title: 'Favoritos', icon: const Icon(Icons.favorite)),
         ProfileOption.arrow(title: 'Mi Dirreciones', navigator: const AdressListPage(), icon: const Icon(Icons.location_on)),
         ProfileOption.arrow(title: 'Mi Tarjetas', navigator: const ListCardScreen(), icon: const Icon(Icons.credit_card)),

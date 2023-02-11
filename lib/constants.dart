@@ -37,5 +37,8 @@ const OutlineInputBorder defaultOutlineInputBorder = OutlineInputBorder(
 );
 
 const titleProfile = TextStyle(fontWeight: FontWeight.w400, fontSize: 16, color: Colors.black);
-
 const titleProfileRigth = TextStyle(fontWeight: FontWeight.w600, fontSize: 18, color: Colors.black);
+const badgeOrden = TextStyle(fontWeight: FontWeight.w700, fontSize: 14, color: Colors.white);
+
+const ordenProgress = TextStyle(fontWeight: FontWeight.w700, fontSize: 12, color: Colors.black);
+const paddiOrden = EdgeInsets.symmetric(vertical: 8.0, horizontal: 15);

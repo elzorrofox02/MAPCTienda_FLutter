@@ -143,10 +143,10 @@ class _ExplorePageState extends State<EditProfile> {
                       padding: const EdgeInsets.symmetric(vertical: defaultPadding, horizontal: 10),
                       child: InternationalPhoneNumberInput(
                         onInputChanged: (PhoneNumber number) {
-                          print(number.phoneNumber);
+                          //print(number.phoneNumber);
                         },
                         onInputValidated: (bool value) {
-                          print(value);
+                          //print(value);
                         },
                         selectorConfig: const SelectorConfig(
                           selectorType: PhoneInputSelectorType.DIALOG,

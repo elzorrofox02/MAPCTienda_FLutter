@@ -5,7 +5,6 @@ import 'package:hellowork/constants.dart';
 import 'package:hellowork/screens/payment/components/card_utilis.dart';
 import 'package:hellowork/screens/payment/components/input_formatters.dart';
 import 'package:hellowork/screens/payment/components/credit_cart.dart';
-import 'package:hellowork/models/list_card.dart';
 
 class AddNewCardScreen extends StatefulWidget {
   const AddNewCardScreen({

@@ -45,6 +45,9 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   json_annotation: ^4.8.0
   intl_phone_number_input: ^0.7.2
+  im_stepper: ^1.0.1+1
+  another_stepper: ^1.1.6
+  easy_stepper: ^0.3.1
 
 dev_dependencies:
   flutter_test:
