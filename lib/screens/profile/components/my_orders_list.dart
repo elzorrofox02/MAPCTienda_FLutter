@@ -3,6 +3,7 @@ import 'package:another_stepper/another_stepper.dart';
 import 'package:hellowork/constants.dart';
 
 import 'package:hellowork/models/orden_list.dart';
+import 'package:hellowork/screens/profile/components/my_orden_list_detail.dart';
 
 class MyListOrders extends StatefulWidget {
   const MyListOrders({super.key, required this.typeLoad});
@@ -157,20 +158,30 @@ class _ExplorePageState extends State<MyListOrders> {
                   final currentStepColor = status(demoOrdenListlist[index].status)["number"];
 
                   return Container(
+                    padding: const EdgeInsets.only(bottom: 20),
                     decoration: BoxDecoration(
-                      border: Border.all(color: kTextLightColor, width: 1.5),
-                      borderRadius: const BorderRadius.all(Radius.circular(8.0)),
+                      border: Border.all(color: const Color(0xffeaefff)),
+                      //color: Color(0xffffffff),
+                      borderRadius: BorderRadius.circular(5),
                     ),
+                    // decoration: BoxDecoration(
+                    //   border: Border.all(color: kTextLightColor, width: 1.5),
+                    //   borderRadius: const BorderRadius.all(Radius.circular(8.0)),
+                    // ),
                     child: Column(
                       children: [
                         ListTile(
                           shape: const Border(
-                            bottom: BorderSide(width: 1, color: Colors.grey),
+                            bottom: BorderSide(width: 1, color: Color(0xffeaefff)),
                             //top: BorderSide(width: 1, color: Colors.grey),
                           ),
                           title: Text("${demoOrdenListlist[index].id}", style: const TextStyle(fontSize: 13, color: kSecondaryColor)),
                           subtitle: Text("${demoOrdenListlist[index].create}", style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: kTextColor)),
                           trailing: const Icon(Icons.chevron_right),
+                          onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                              builder: (_) => MyOrdenDetail(
+                                    orden: demoOrdenListlist[index],
+                                  ))),
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10),
@@ -186,14 +197,14 @@ class _ExplorePageState extends State<MyListOrders> {
                             barThickness: 3,
                           ),
                         ),
-                        ListTile(title: const Text("Status"), visualDensity: VisualDensity(horizontal: 0, vertical: -4), trailing: status(demoOrdenListlist[index].status)["action"]),
+                        ListTile(title: const Text("Status"), visualDensity: const VisualDensity(horizontal: 0, vertical: -4), trailing: status(demoOrdenListlist[index].status)["action"]),
                         ListTile(
-                          visualDensity: VisualDensity(horizontal: 0, vertical: -4),
+                          visualDensity: const VisualDensity(horizontal: 0, vertical: -4),
                           title: const Text("Items"),
                           trailing: Text("${demoOrdenListlist[index].totalQuantity}"),
                         ),
                         ListTile(
-                          visualDensity: VisualDensity(horizontal: 0, vertical: -4),
+                          visualDensity: const VisualDensity(horizontal: 0, vertical: -4),
                           title: const Text("Precio"),
                           trailing: Text("\$ ${demoOrdenListlist[index].totalPrice}", style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: kPrice)),
                         ),

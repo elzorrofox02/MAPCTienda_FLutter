@@ -42,3 +42,11 @@ const badgeOrden = TextStyle(fontWeight: FontWeight.w700, fontSize: 14, color: C
 
 const ordenProgress = TextStyle(fontWeight: FontWeight.w700, fontSize: 12, color: Colors.black);
 const paddiOrden = EdgeInsets.symmetric(vertical: 8.0, horizontal: 15);
+
+const ordenList = TextStyle(
+  fontSize: 14,
+  fontWeight: FontWeight.w500,
+  height: 1.7999998728,
+  letterSpacing: 0.5,
+  color: Color(0xff223263),
+);

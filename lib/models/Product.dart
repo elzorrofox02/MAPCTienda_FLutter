@@ -1,33 +1,10 @@
 import 'package:flutter/material.dart';
 
-class ProductData {
-  ProductData({
-    required this.totalItems,
-    required this.totalPages,
-    required this.data,
-  });
-
-  int totalItems;
-  int totalPages;
-  List<Product> data;
-
-  factory ProductData.fromJson(Map<String, dynamic> json) => ProductData(
-        totalItems: json["totalResult"]["totalCount"][0]["count"],
-        totalPages: json["pages"],
-        data: List<Product>.from(json["items"].map((x) => Product.fromJson(x))),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "totalItems": totalItems,
-        "totalPages": totalPages,
-        "data": List<dynamic>.from(data.map((x) => x.toJson())),
-      };
-}
-
 class Product {
   final String id, image, name, url, price;
   final String? description;
   final int stock;
+  final String? qty, totalprice;
 
   //final dynamic optionSearch;
 
@@ -43,6 +20,8 @@ class Product {
     required this.stock,
     required this.colors,
     required this.images,
+    this.qty,
+    this.totalprice,
     this.description = "",
     //this.optionSearch = "",
   });
@@ -71,6 +50,7 @@ class Product {
         description: json["description"],
         //optionSearch: json["optionSearch"]
       );
+  factory Product.fromJsonItem(json) => Product(id: json["item"]['_id'], image: json["item"]['image']["path"], name: json["item"]['name'], url: json["item"]['slug'], stock: json["item"]['cantidad'], price: json["item"]['price'].toString(), colors: [], images: json["item"]['image']["fotos"], description: json["item"]["description"], qty: json["totalQty"].toString(), totalprice: json["totalPrice"].toString());
 
   Map<String, dynamic> toJson() => {
         'id': id,
