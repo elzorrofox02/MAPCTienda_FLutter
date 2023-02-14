@@ -24,7 +24,6 @@ class MyOrdenDetail extends StatefulWidget {
 
 class _ExplorePageState extends State<MyOrdenDetail> {
   OrdenList? post;
-  List? cart = ["aassa", "assasa"];
 
   //List<Product> items = [];
 

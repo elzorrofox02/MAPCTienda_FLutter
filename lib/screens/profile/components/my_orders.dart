@@ -60,6 +60,7 @@ class _StateprofileOrders extends State<ProfileOrders> {
             ListTile(
               onTap: () => Navigator.of(context).push(MaterialPageRoute(
                   builder: (_) => const MyListOrders(
+                        status: 9,
                         typeLoad: "finish",
                       ))),
               horizontalTitleGap: 0.0,
@@ -89,6 +90,7 @@ class _StateprofileOrders extends State<ProfileOrders> {
             ListTile(
               onTap: () => Navigator.of(context).push(MaterialPageRoute(
                   builder: (_) => const MyListOrders(
+                        status: 7,
                         typeLoad: "packet",
                       ))),
               horizontalTitleGap: 0.0,
@@ -116,6 +118,7 @@ class _StateprofileOrders extends State<ProfileOrders> {
             ListTile(
               onTap: () => Navigator.of(context).push(MaterialPageRoute(
                   builder: (_) => const MyListOrders(
+                        status: 3,
                         typeLoad: "pendient_payment",
                       ))),
               horizontalTitleGap: 0.0,
@@ -143,6 +146,7 @@ class _StateprofileOrders extends State<ProfileOrders> {
             ListTile(
               onTap: () => Navigator.of(context).push(MaterialPageRoute(
                   builder: (_) => const MyListOrders(
+                        status: 4,
                         typeLoad: "processing_payment",
                       ))),
               horizontalTitleGap: 0.0,
@@ -170,6 +174,7 @@ class _StateprofileOrders extends State<ProfileOrders> {
             ListTile(
               onTap: () => Navigator.of(context).push(MaterialPageRoute(
                   builder: (_) => const MyListOrders(
+                        status: 8,
                         typeLoad: "shipped",
                       ))),
               horizontalTitleGap: 0.0,
@@ -197,7 +202,8 @@ class _StateprofileOrders extends State<ProfileOrders> {
             ListTile(
               onTap: () => Navigator.of(context).push(MaterialPageRoute(
                   builder: (_) => const MyListOrders(
-                        typeLoad: "shipped",
+                        status: 6,
+                        typeLoad: "cart",
                       ))),
               horizontalTitleGap: 0.0,
               leading: const Icon(Icons.shopping_cart),
@@ -224,6 +230,7 @@ class _StateprofileOrders extends State<ProfileOrders> {
             ListTile(
               onTap: () => Navigator.of(context).push(MaterialPageRoute(
                   builder: (_) => const MyListOrders(
+                        status: 5,
                         typeLoad: "cancel",
                       ))),
               horizontalTitleGap: 0.0,

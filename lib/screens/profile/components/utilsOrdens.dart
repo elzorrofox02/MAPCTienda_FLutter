@@ -16,6 +16,8 @@ class OrdenUtils {
       return {"number": 4, "stepe": 4, "detail": "Delivery", "action": const Text("Delivery en Camino")};
     } else if (data == "finish") {
       return {"number": 5, "stepe": 5, "detail": "Completadas", "action": const Text("Entregado")};
+    } else if (data == "cart") {
+      return {"number": 1, "stepe": 1, "detail": "En Carrito", "action": const Text("Pagar")};
     } else if (data == "pendient_payment") {
       return {
         "number": 10,

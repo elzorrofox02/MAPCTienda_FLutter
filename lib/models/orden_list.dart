@@ -34,15 +34,15 @@ class OrdenCount {
 
   factory OrdenCount.fromJson(Map<String, dynamic> json) => OrdenCount(
         acreddit: json["count"]["acreddit"], //1
-        pendient: json["count"]["pendient"], //2
-        processing: json["count"]["processing"], //3
-        rejected: json["count"]["rejected"], //4
+        pendient: json["count"]["pendient"], //3
+        processing: json["count"]["processing"], //4
+        rejected: json["count"]["rejected"],
         cancel: json["count"]["cancel"],
-        totalcancel: json["count"]["rejected"] + json["count"]["cancel"], //4
-        bag: json["count"]["bag"], //5
-        packet: json["count"]["packet"], //6
-        shipped: json["count"]["shipped"], //7
-        finish: json["count"]["finish"], //8
+        totalcancel: json["count"]["rejected"] + json["count"]["cancel"], //5
+        bag: json["count"]["bag"], //6
+        packet: json["count"]["packet"], //7
+        shipped: json["count"]["shipped"], //8
+        finish: json["count"]["finish"], //9
         total: json["count"]["total"], //total
         pages: json["count"]["pages"], //pages
       );
@@ -62,7 +62,8 @@ class OrdenList {
       //this.items
       });
 
-  factory OrdenList.fromJson(Map<String, dynamic> json) => OrdenList(
+  //factory OrdenList.fromJson(Map<String, dynamic> json) => OrdenList(
+  factory OrdenList.fromJson(json) => OrdenList(
         id: json["_id"],
         status: json["status"],
         deliveryPrice: json["DeliveryPrice"].toString(),
