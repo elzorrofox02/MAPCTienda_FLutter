@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:hellowork/models/orden_list.dart';
 import 'package:another_stepper/another_stepper.dart';
 import 'package:hellowork/constants.dart';
-import 'package:hellowork/models/product.dart';
-import 'package:hellowork/screens/profile/components/utilsOrdens.dart';
+//import 'package:hellowork/models/product.dart';
+import 'package:hellowork/screens/profile/components/utils_ordens.dart';
 import 'package:hellowork/components/image_viewer.dart';
 import 'dart:convert';
-import 'package:http/http.dart' as http;
+//import 'package:http/http.dart' as http;
 
 class MyOrdenDetail extends StatefulWidget {
   const MyOrdenDetail({
@@ -23,16 +23,16 @@ class MyOrdenDetail extends StatefulWidget {
 }
 
 class _ExplorePageState extends State<MyOrdenDetail> {
-  OrdenList? post;
+  //OrdenList? post;
 
   //List<Product> items = [];
 
-  List<Product> items = [];
+  //List<Product> items = [];
 
   @override
   void initState() {
     super.initState();
-    _getProduct();
+    //_getProduct();
   }
 
   @override
@@ -40,35 +40,10 @@ class _ExplorePageState extends State<MyOrdenDetail> {
     super.dispose();
   }
 
-  Future<void> _getProduct() async {
-    print(widget.orden?.id);
-    final response = await http.get(Uri.parse("http://192.168.0.73:3000/auth/profile/order/${widget.orden?.id}"), headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZWU5MmE3N2QxMTdmNjA0OTgwOTEwYmMiLCJpYXQiOjE2NDIyMjM5MzN9.SqKdM6MQ7VO56t-AlXagYgUjLjNqYCrIdcjUmXXuVk4',
-    });
-
-    if (response.statusCode == 200) {
-      String body = utf8.decode(response.bodyBytes);
-
-      final result = OrdenListDataFromJson(response.body);
-      items = result.items!;
-      post = result;
-
-      //final jsonData = jsonDecode(body);
-      //var _list = jsonData["cart"].values.toList();
-
-      setState(() {
-        //items = _list.map<Product>(Product.fromJsonItem).toList();
-        //post = OrdenList.fromJson(jsonData);
-      });
-    } else {
-      print("algo pasooo");
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
+    final envio = widget.orden?.envio;
+    final plataform = envio?.plataform;
     final consult = OrdenUtils.status(widget.orden?.status);
     final currentStep = consult["stepe"];
     final currentStepColor = consult["number"];
@@ -85,11 +60,10 @@ class _ExplorePageState extends State<MyOrdenDetail> {
             physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
             scrollDirection: Axis.vertical,
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
               child: Column(
                 children: [
                   Container(
-                      child: Container(
                     padding: const EdgeInsets.only(bottom: 20),
                     child: Container(
                       decoration: BoxDecoration(
@@ -104,8 +78,8 @@ class _ExplorePageState extends State<MyOrdenDetail> {
                               bottom: BorderSide(width: 1, color: Color(0xffeaefff)),
                               //top: BorderSide(width: 1, color: Colors.grey),
                             ),
-                            title: Text("${post?.id}", style: const TextStyle(fontSize: 13, color: kSecondaryColor)),
-                            subtitle: Text("${post?.create}", style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: kTextColor)),
+                            title: Text("${widget.orden?.id}", style: const TextStyle(fontSize: 13, color: kSecondaryColor)),
+                            subtitle: Text("${widget.orden?.create}", style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: kTextColor)),
                             trailing: const Icon(Icons.chevron_right),
                           ),
                           Padding(
@@ -126,91 +100,162 @@ class _ExplorePageState extends State<MyOrdenDetail> {
                         ],
                       ),
                     ),
-                  )),
-                  Container(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                      Container(
-                        padding: EdgeInsets.symmetric(vertical: 15),
-                        child: const Text(
-                          'Detalles Delivery',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w700,
-                            height: 1.5,
-                            letterSpacing: 0.5,
-                            color: Color(0xff223263),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(color: const Color(0xffeaefff)),
-                          //color: const Color(0xffffffff),
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        child: Column(children: [
-                          ListTile(
-                            title: Text(
-                              "Fecha Delivery",
-                              style: ordenList,
-                            ),
-                            trailing: Text("ayer"),
-                          ),
-                          ListTile(
-                            title: Text(
-                              "Metodo",
-                              style: ordenList,
-                            ),
-                            trailing: Text("Post"),
-                          ),
-                          ListTile(
-                            title: Text(
-                              'Three-line ListTile',
-                              style: ordenList,
-                            ),
-                            subtitle: Text(
-                              'A sufficiently long subtitle warrants three lines.',
-                              style: TextStyle(
-                                fontSize: 13.0,
-                                color: kTextColor,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                            trailing: Icon(Icons.location_city),
-                            //isThreeLine: true,
-                          ),
-                          // ListTile(
-                          //   title: RichText(
-                          //     text: TextSpan(
-                          //       children: [
-                          //         const TextSpan(text: 'Direccion ', style: ordenList),
-                          //         TextSpan(
-                          //           text: 'jaslk djlkasjd lkjasiopd jasidji as',
-                          //           style: TextStyle(fontWeight: FontWeight.w400, fontSize: 12, color: kTextColor),
-                          //         ),
-                          //       ],
-                          //     ),
-                          //   ),
-                          // ),
-                          // Row(
-                          //   children: [
-                          //     Text(
-                          //       "Dirrecion",
-                          //       style: ordenList,
-                          //     ),
-                          //     Text("Avenida presidente de venezuela luego derecha Tre asidjhoi ahjsodo ahoisdhj oiasdao hjoiashjdoi ahjsoidjh aosijhdoiasjoidj aoisjd ioasjoidj asoij oiasjoidj oi"),
-                          //   ],
-                          // )
-                        ]),
-                      )
-                    ]),
                   ),
+                  (plataform != null && plataform != "null")
+                      ? Container(
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                            ListTile(
+                              visualDensity: const VisualDensity(vertical: -4), // to
+                              title: const Text(
+                                "Detalle Entrega",
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w700,
+                                  height: 1.5,
+                                  letterSpacing: 0.5,
+                                  color: Color(0xff223263),
+                                ),
+                              ),
+                              trailing: currentStep <= 3 ? const Text("Cambiar") : Container(),
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                border: Border.all(color: const Color(0xffeaefff)),
+                                //color: const Color(0xffffffff),
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              child: Column(children: [
+                                const ListTile(
+                                  title: Text(
+                                    "Fecha",
+                                    style: ordenList,
+                                  ),
+                                  trailing: Text("ayer"),
+                                ),
+                                ListTile(
+                                  title: const Text(
+                                    "Metodo",
+                                    style: ordenList,
+                                  ),
+                                  trailing: Text("${OrdenUtils.method(envio)["mth"]}"),
+                                ),
+                                plataform == "province"
+                                    ? ListTile(
+                                        title: const Text(
+                                          'Dirrecion',
+                                          style: ordenList,
+                                        ),
+                                        subtitle: Text(
+                                          '${envio?.province?.country}, ${envio?.province?.city}, ${envio?.province?.province}, ${envio?.province?.distrit}, ${envio?.metdirection?.direction},${envio?.metdirection?.number},${envio?.metdirection?.piso},${envio?.metdirection?.reference}',
+                                          style: const TextStyle(
+                                            fontSize: 13.0,
+                                            color: kTextColor,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                        trailing: const Icon(Icons.location_city),
+                                        //isThreeLine: true,
+                                      )
+                                    : Container(),
+                                plataform == "express"
+                                    ? ListTile(
+                                        title: const Text(
+                                          'Dirrecion',
+                                          style: ordenList,
+                                        ),
+                                        subtitle: Text(
+                                          '${envio?.express?.diretionmaps},${envio?.express?.lanlong} ,${envio?.metdirection?.direction},${envio?.metdirection?.number},${envio?.metdirection?.piso},${envio?.metdirection?.reference}',
+                                          style: const TextStyle(
+                                            fontSize: 13.0,
+                                            color: kTextColor,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                        trailing: const Icon(Icons.location_city),
+                                        //isThreeLine: true,
+                                      )
+                                    : Container(),
+                                plataform == "shop"
+                                    ? const ListTile(
+                                        title: Text(
+                                          'Dirrecion',
+                                          style: ordenList,
+                                        ),
+                                        subtitle: Text(
+                                          'La isabelica Sector 1, casa 2',
+                                          style: TextStyle(
+                                            fontSize: 13.0,
+                                            color: kTextColor,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                        trailing: Icon(Icons.location_city),
+                                        //isThreeLine: true,
+                                      )
+                                    : Container(),
+                                ListTile(
+                                  title: const Text(
+                                    'Receptor',
+                                    style: ordenList,
+                                  ),
+                                  subtitle: Text(
+                                    '${envio?.dataName} ${envio?.datalastname},${envio?.dataDocType}-${envio?.dataDocNumber}',
+                                    style: const TextStyle(
+                                      fontSize: 13.0,
+                                      color: kTextColor,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                  trailing: const Icon(Icons.location_city),
+                                  //isThreeLine: true,
+                                ),
+                                (envio?.dataConctaperson != null && envio?.dataConctaperson != "")
+                                    ? ListTile(
+                                        title: const Text(
+                                          'Receptor 2',
+                                          style: ordenList,
+                                        ),
+                                        subtitle: Text(
+                                          '${envio?.dataConctaperson} ${envio?.dataPhone}',
+                                          style: const TextStyle(
+                                            fontSize: 13.0,
+                                            color: kTextColor,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                        trailing: const Icon(Icons.location_city),
+                                        //isThreeLine: true,
+                                      )
+                                    : Container(),
+                                (envio?.dataInstruccion != null && envio?.dataInstruccion != "")
+                                    ? ListTile(
+                                        title: const Text(
+                                          'Instrucciones',
+                                          style: ordenList,
+                                        ),
+                                        subtitle: Text(
+                                          '${envio?.dataName} ${envio?.datalastname},${envio?.dataDocType}-${envio?.dataDocNumber}',
+                                          style: const TextStyle(
+                                            fontSize: 13.0,
+                                            color: kTextColor,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                        trailing: const Icon(Icons.location_city),
+                                        //isThreeLine: true,
+                                      )
+                                    : Container(),
+                              ]),
+                            )
+                          ]),
+                        )
+                      : Container(),
                   Container(
                     padding: const EdgeInsets.symmetric(vertical: 5),
                     child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                       Container(
-                        padding: EdgeInsets.symmetric(vertical: 15),
+                        padding: const EdgeInsets.symmetric(vertical: 15),
                         child: const Text(
                           'Metodo de Pago',
                           style: TextStyle(
@@ -230,35 +275,35 @@ class _ExplorePageState extends State<MyOrdenDetail> {
                         ),
                         child: Column(children: [
                           ListTile(
-                            title: Text(
+                            title: const Text(
                               "Metodo",
                               style: ordenList,
                             ),
-                            trailing: Text("${post?.plataform}"),
+                            trailing: Text("${widget.orden?.plataform}"),
                           ),
                           ListTile(
-                            title: Text(
+                            title: const Text(
                               "Moneda",
                               style: ordenList,
                             ),
-                            trailing: Text("${post?.currencyId}"),
+                            trailing: Text("${widget.orden?.currencyId}"),
                           ),
                           ListTile(
-                            title: Text(
+                            title: const Text(
                               'Tarjeta',
                               style: ordenList,
                             ),
 
-                            trailing: Text("${post?.cardLastDigits}"),
+                            trailing: Text("${widget.orden?.cardLastDigits}"),
                             //isThreeLine: true,
                           ),
                           ListTile(
-                            title: Text(
+                            title: const Text(
                               'Nombre',
                               style: ordenList,
                             ),
 
-                            trailing: Text("${post?.cardname}"),
+                            trailing: Text("${widget.orden?.cardname}"),
                             //isThreeLine: true,
                           ),
                           // ListTile(
@@ -291,78 +336,76 @@ class _ExplorePageState extends State<MyOrdenDetail> {
                     padding: const EdgeInsets.symmetric(vertical: 5),
                     child: Column(
                       children: [
-                        Container(
-                          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                            Container(
-                              padding: EdgeInsets.symmetric(vertical: 10),
-                              child: const Text(
-                                'Resumen de Orden',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w700,
-                                  height: 1.5,
-                                  letterSpacing: 0.5,
-                                  color: Color(0xff223263),
+                        Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                          Container(
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            child: const Text(
+                              'Resumen de Orden',
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w700,
+                                height: 1.5,
+                                letterSpacing: 0.5,
+                                color: Color(0xff223263),
+                              ),
+                            ),
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(color: const Color(0xffeaefff)),
+                              //color: const Color(0xffffffff),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: Column(
+                              children: [
+                                const ListTile(
+                                  dense: true,
+                                  visualDensity: VisualDensity(vertical: -4), // to
+                                  title: Text(
+                                    "Sub-Total",
+                                    style: ordenList,
+                                  ),
+                                  trailing: Text("652"),
                                 ),
-                              ),
+                                const ListTile(
+                                  dense: true,
+                                  visualDensity: VisualDensity(vertical: -4), // to
+                                  title: Text(
+                                    "Descuento",
+                                    style: ordenList,
+                                  ),
+                                  trailing: Text("50"),
+                                ),
+                                ListTile(
+                                  dense: true,
+                                  visualDensity: const VisualDensity(vertical: -4), // to compact
+
+                                  title: const Text(
+                                    'Envio',
+                                    style: ordenList,
+                                  ),
+
+                                  trailing: Text("${widget.orden?.deliveryPrice}"),
+                                  //isThreeLine: true,
+                                ),
+                                ListTile(
+                                  dense: true,
+                                  visualDensity: const VisualDensity(vertical: -4), // to
+
+                                  title: const Text(
+                                    'Total',
+                                    style: ordenList,
+                                  ),
+                                  trailing: Text(
+                                    "${widget.orden?.totalPrice}",
+                                    style: const TextStyle(color: kPrimaryColor),
+                                  ),
+                                  //isThreeLine: true,
+                                ),
+                              ],
                             ),
-                            Container(
-                              decoration: BoxDecoration(
-                                border: Border.all(color: const Color(0xffeaefff)),
-                                //color: const Color(0xffffffff),
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              child: Column(
-                                children: [
-                                  ListTile(
-                                    dense: true,
-                                    visualDensity: VisualDensity(vertical: -4), // to
-                                    title: Text(
-                                      "Sub-Total",
-                                      style: ordenList,
-                                    ),
-                                    trailing: Text("652"),
-                                  ),
-                                  ListTile(
-                                    dense: true,
-                                    visualDensity: VisualDensity(vertical: -4), // to
-                                    title: Text(
-                                      "Descuento",
-                                      style: ordenList,
-                                    ),
-                                    trailing: Text("50"),
-                                  ),
-                                  ListTile(
-                                    dense: true,
-                                    visualDensity: VisualDensity(vertical: -4), // to compact
-
-                                    title: Text(
-                                      'Envio',
-                                      style: ordenList,
-                                    ),
-
-                                    trailing: Text("${post?.deliveryPrice}"),
-                                    //isThreeLine: true,
-                                  ),
-                                  ListTile(
-                                    dense: true,
-                                    visualDensity: VisualDensity(vertical: -4), // to
-
-                                    title: Text(
-                                      'Total',
-                                      style: ordenList,
-                                    ),
-                                    trailing: Text(
-                                      "${post?.totalPrice}",
-                                      style: TextStyle(color: kPrimaryColor),
-                                    ),
-                                    //isThreeLine: true,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ]),
-                        ),
+                          ),
+                        ]),
                       ],
                     ),
                   ),
@@ -370,64 +413,74 @@ class _ExplorePageState extends State<MyOrdenDetail> {
                     padding: const EdgeInsets.symmetric(vertical: 5),
                     child: Column(
                       children: [
-                        Container(
-                          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                            Container(
-                              padding: EdgeInsets.symmetric(vertical: 10),
-                              child: const Text(
-                                'Productos',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w700,
-                                  height: 1.5,
-                                  letterSpacing: 0.5,
-                                  color: Color(0xff223263),
-                                ),
+                        Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                          Container(
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            child: const Text(
+                              'Productos',
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w700,
+                                height: 1.5,
+                                letterSpacing: 0.5,
+                                color: Color(0xff223263),
                               ),
                             ),
-                            Container(
-                              padding: EdgeInsets.symmetric(horizontal: 10),
-                              decoration: BoxDecoration(
-                                border: Border.all(color: const Color(0xffeaefff)),
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              child: Column(
-                                children: [
-                                  SizedBox(
-                                    child: ListView.builder(
-                                      physics: const NeverScrollableScrollPhysics(),
-                                      shrinkWrap: true,
-                                      itemCount: items.length,
+                          ),
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            decoration: BoxDecoration(
+                              border: Border.all(color: const Color(0xffeaefff)),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  child: ListView.builder(
+                                    physics: const NeverScrollableScrollPhysics(),
+                                    shrinkWrap: true,
+                                    itemCount: widget.orden?.items?.length,
 
-                                      //itemCount: 2,
-                                      itemBuilder: (_, index) => CustomListItemTwo(
-                                        // thumbnail: Container(
-                                        //   decoration: const BoxDecoration(color: Colors.pink),
-                                        // ),
-                                        // title: "asas",
-                                        // publishDate: "asasasa",
-                                        // readDuration: "saasas",
+                                    //itemCount: 2,
+                                    itemBuilder: (_, index) => CustomListItemTwo(
+                                      // thumbnail: Container(
+                                      //   decoration: const BoxDecoration(color: Colors.pink),
+                                      // ),
+                                      // title: "asas",
+                                      // publishDate: "asasasa",
+                                      // readDuration: "saasas",
 
-                                        thumbnail: ImageLoads(
-                                          image: "${items[index].image}",
-                                        ),
-                                        title: "${items[index].name}",
-                                        publishDate: "${items[index].price}",
-                                        readDuration: "${items[index].qty}",
+                                      thumbnail: ImageLoads(
+                                        image: "${widget.orden?.items?[index].image}",
                                       ),
+                                      title: "${widget.orden?.items?[index].name}",
+                                      publishDate: "${widget.orden?.items?[index].price}",
+                                      readDuration: "${widget.orden?.items?[index].qty}",
                                     ),
-                                  )
-                                ],
-                              ),
+                                  ),
+                                )
+                              ],
                             ),
-                          ]),
-                        ),
+                          ),
+                        ]),
                       ],
                     ),
                   ),
                 ],
               ),
             )));
+  }
+}
+
+class Shipping extends StatelessWidget {
+  const Shipping({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    throw UnimplementedError();
   }
 }
 

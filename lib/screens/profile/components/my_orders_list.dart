@@ -4,10 +4,10 @@ import 'package:hellowork/constants.dart';
 
 import 'package:hellowork/models/orden_list.dart';
 import 'package:hellowork/screens/profile/components/my_orden_list_detail.dart';
-import 'package:hellowork/models/orden_list.dart';
+
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:hellowork/screens/profile/components/utilsOrdens.dart';
+import 'package:hellowork/screens/profile/components/utils_ordens.dart';
 
 class MyListOrders extends StatefulWidget {
   const MyListOrders({super.key, required this.typeLoad, required this.status});
@@ -46,70 +46,11 @@ class _ExplorePageState extends State<MyListOrders> {
 
       setState(() {
         post = jsonData.map<OrdenList>(OrdenList.fromJson).toList();
-
-        print(post?.length);
       });
     } else {
       print("algo pasooo");
     }
   }
-
-  List<StepperData> stepperData = [
-    StepperData(
-        title: StepperText("Bolsa",
-            textStyle: const TextStyle(
-              color: Colors.grey,
-            )),
-        //subtitle: StepperText("Your order is being prepared"),
-
-        iconWidget: Container(
-          //padding: const EdgeInsets.all(8),
-          decoration: const BoxDecoration(color: Colors.green, borderRadius: BorderRadius.all(Radius.circular(30))),
-          child: const Icon(Icons.check, color: Colors.white),
-        )),
-    StepperData(
-        title: StepperText("Procesando",
-            textStyle: const TextStyle(
-              color: Colors.grey,
-            )),
-        //subtitle: StepperText("Your order is being prepared"),
-
-        iconWidget: Container(
-          //padding: const EdgeInsets.all(8),
-          decoration: const BoxDecoration(color: Colors.green, borderRadius: BorderRadius.all(Radius.circular(30))),
-          child: const Icon(Icons.check, color: Colors.white),
-        )),
-    StepperData(
-        title: StepperText("Packet",
-            textStyle: const TextStyle(
-              color: Colors.grey,
-            )),
-        //subtitle: StepperText("Our delivery executive is on the way to deliver your item"),
-        iconWidget: Container(
-          //padding: const EdgeInsets.all(8),
-          decoration: const BoxDecoration(color: Colors.green, borderRadius: BorderRadius.all(Radius.circular(30))),
-          child: const Icon(Icons.check, color: Colors.white),
-        )),
-    StepperData(
-        title: StepperText("Shiping",
-            textStyle: const TextStyle(
-              color: Colors.grey,
-            )),
-        iconWidget: Container(
-          //padding: const EdgeInsets.all(8),
-          decoration: const BoxDecoration(color: Colors.green, borderRadius: BorderRadius.all(Radius.circular(30))),
-          child: const Icon(Icons.check, color: Colors.white),
-        )),
-    StepperData(
-        title: StepperText("Delivery",
-            textStyle: const TextStyle(
-              color: Colors.grey,
-            )),
-        iconWidget: Container(
-          decoration: const BoxDecoration(color: Colors.green, borderRadius: BorderRadius.all(Radius.circular(30))),
-          child: const Icon(Icons.check, color: Colors.white),
-        )),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -162,13 +103,13 @@ class _ExplorePageState extends State<MyListOrders> {
                           trailing: const Icon(Icons.chevron_right),
                           onTap: () => Navigator.of(context).push(MaterialPageRoute(
                               builder: (_) => MyOrdenDetail(
-                                    orden: demoOrdenListlist[index],
+                                    orden: post?[index],
                                   ))),
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10),
                           child: AnotherStepper(
-                            stepperList: stepperData,
+                            stepperList: OrdenUtils.stepperData,
                             stepperDirection: Axis.horizontal,
                             gap: 20,
                             iconWidth: 25,

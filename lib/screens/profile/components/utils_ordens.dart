@@ -5,7 +5,7 @@ import 'package:another_stepper/another_stepper.dart';
 class OrdenUtils {
   static status(data) {
     if (data == "bolsa") {
-      return {"number": 0, "stepe": 0, "detail": "En Carrito", "action": const Text("En Carrito")};
+      return {"number": -1, "stepe": -1, "detail": "En Carrito", "action": const Text("En Carrito")};
     } else if (data == "processing_payment") {
       return {"number": 1, "stepe": 1, "detail": "Procesando", "action": const Text("Procesando Pago")};
     } else if (data == "acreddit_payment") {
@@ -54,18 +54,18 @@ class OrdenUtils {
   }
 
   static List<StepperData> stepperData = [
-    StepperData(
-        title: StepperText("Bolsa",
-            textStyle: const TextStyle(
-              color: Colors.grey,
-            )),
-        //subtitle: StepperText("Your order is being prepared"),
+    // StepperData(
+    //     title: StepperText("Bolsa",
+    //         textStyle: const TextStyle(
+    //           color: Colors.grey,
+    //         )),
+    //     //subtitle: StepperText("Your order is being prepared"),
 
-        iconWidget: Container(
-          //padding: const EdgeInsets.all(8),
-          decoration: const BoxDecoration(color: Colors.green, borderRadius: BorderRadius.all(Radius.circular(30))),
-          child: const Icon(Icons.check, color: Colors.white),
-        )),
+    //     iconWidget: Container(
+    //       //padding: const EdgeInsets.all(8),
+    //       decoration: const BoxDecoration(color: Colors.green, borderRadius: BorderRadius.all(Radius.circular(30))),
+    //       child: const Icon(Icons.check, color: Colors.white),
+    //     )),
     StepperData(
         title: StepperText("Procesando",
             textStyle: const TextStyle(
@@ -90,7 +90,7 @@ class OrdenUtils {
           child: const Icon(Icons.check, color: Colors.white),
         )),
     StepperData(
-        title: StepperText("Shiping",
+        title: StepperText("Delivery",
             textStyle: const TextStyle(
               color: Colors.grey,
             )),
@@ -100,7 +100,7 @@ class OrdenUtils {
           child: const Icon(Icons.check, color: Colors.white),
         )),
     StepperData(
-        title: StepperText("Delivery",
+        title: StepperText("Entrega",
             textStyle: const TextStyle(
               color: Colors.grey,
             )),
@@ -109,4 +109,20 @@ class OrdenUtils {
           child: const Icon(Icons.check, color: Colors.white),
         )),
   ];
+
+  static method(data) {
+    if (data?.plataform == "express") {
+      return {"mth": "Delivery Express"};
+    } else if (data?.plataform == "express_programic") {
+      return {"mth": "Delivery Programado"};
+    } else if (data?.plataform == "province") {
+      return {"mth": "Envio Encomienda"};
+    } else if (data?.plataform == "shop") {
+      return {
+        "mth": "Retirar en Tienda",
+      };
+    } else {
+      return {"mth": "No selecionado"};
+    }
+  }
 }
