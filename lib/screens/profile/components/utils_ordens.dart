@@ -111,13 +111,13 @@ class OrdenUtils {
   ];
 
   static method(data) {
-    if (data?.plataform == "express") {
+    if (data == "express") {
       return {"mth": "Delivery Express"};
-    } else if (data?.plataform == "express_programic") {
+    } else if (data == "express_programic") {
       return {"mth": "Delivery Programado"};
-    } else if (data?.plataform == "province") {
+    } else if (data == "province") {
       return {"mth": "Envio Encomienda"};
-    } else if (data?.plataform == "shop") {
+    } else if (data == "shop") {
       return {
         "mth": "Retirar en Tienda",
       };

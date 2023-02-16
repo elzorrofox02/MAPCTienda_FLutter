@@ -56,9 +56,10 @@ class OrdenList {
 
   List<Product>? items;
   Envio? envio;
+  Payment? payment;
   //Object? items;
 
-  OrdenList({this.id, this.status, this.deliveryPrice, this.totalPrice, this.totalQuantity, this.create, this.statusDetail, this.plataform, this.target, this.operationType, this.paymentMethodId, this.paymentTypeId, this.statusPay, this.statusDetailPay, this.currencyId, this.cardLastDigits, this.cardname, this.items, this.envio});
+  OrdenList({this.id, this.status, this.deliveryPrice, this.totalPrice, this.totalQuantity, this.create, this.statusDetail, this.plataform, this.target, this.operationType, this.paymentMethodId, this.paymentTypeId, this.statusPay, this.statusDetailPay, this.currencyId, this.cardLastDigits, this.cardname, this.items, this.envio, this.payment});
 
   //factory OrdenList.fromJson(Map<String, dynamic> json) => OrdenList(
   factory OrdenList.fromJson(json) => OrdenList(
@@ -69,8 +70,6 @@ class OrdenList {
         totalQuantity: json["totalQuantity"].toString(),
         create: json["created_at"],
         statusDetail: json["statusDetail"],
-        plataform: json["payment"]?["plataform"]?.toString(),
-        target: json["payment"]?["target"],
         operationType: json["detailPayment"]?["operation_type"],
         paymentMethodId: json["detailPayment"]?["payment_method_id"],
         paymentTypeId: json["detailPayment"]?["payment_type_id"],
@@ -81,8 +80,8 @@ class OrdenList {
         cardname: json["detailPayment"]?["card"]?["cardholder"]?["name"],
         envio: Envio.fromJson(json['envio']),
         //items: (json["cart"] as Map).values.toList(),
-
         items: List<Product>.from(json["cart"].values.toList().map((x) => Product.fromJsonItem(x))),
+        payment: json["payment"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -153,4 +152,72 @@ class Express {
   String? diretionmaps, lat, long, lanlong, pack;
   Express({this.diretionmaps, this.lat, this.long, this.lanlong, this.pack});
   factory Express.fromJson(json) => Express(diretionmaps: json?["diretionmaps"], lat: json?["lat"].toString(), long: json?["long"].toString(), lanlong: json?["lanlong"], pack: json?["pack"].toString());
+}
+
+class Payment {
+  String? plataform, target;
+
+  // ignore: non_constant_identifier_names
+  // CashInterNational? cash_inter;
+  // // ignore: non_constant_identifier_names
+  // CashInterNational? cash_national;
+  // // ignore: non_constant_identifier_names
+  // TrasferBankorPoint? trasfer_bank_inter;
+  // // ignore: non_constant_identifier_names
+  // TrasferBankorPoint? trasfer_bank_national;
+  // // ignore: non_constant_identifier_names
+  // TrasferBankorPoint? pointsale_inter;
+  // // ignore: non_constant_identifier_names
+  // TrasferBankorPoint? pointsale_national;
+  // TrasferBankorPoint? paypal;
+  // TrasferBankorPoint? binance;
+  // TrasferBankorPoint? stripe;
+  // TrasferBankorPoint? zinli;
+  // TrasferBankorPoint? zelle;
+
+  // ignore: non_constant_identifier_names
+  Payment({
+    this.plataform,
+    this.target,
+    //this.cash_inter, this.cash_national, this.trasfer_bank_inter, this.trasfer_bank_national, this.pointsale_inter, this.pointsale_national, this.paypal, this.binance, this.stripe, this.zinli, this.zelle
+  });
+
+  factory Payment.fromJson(json) => Payment(
+        plataform: json?["plataform"]?.toString(),
+        target: json?["target"],
+        // cash_inter: json["plataform"] == "cash_inter" ? CashInterNational.fromJson(json["cash_inter"]) : null,
+        // cash_national: json["plataform"] == "cash_national" ? CashInterNational.fromJson(json["cash_national"]) : null,
+        // trasfer_bank_inter: json["plataform"] == "trasfer_bank_inter" ? TrasferBankorPoint.fromJson(json["trasfer_bank_inter"]) : null,
+        // trasfer_bank_national: json["plataform"] == "trasfer_bank_national" ? TrasferBankorPoint.fromJson(json["trasfer_bank_national"]) : null,
+        // pointsale_inter: json["plataform"] == "pointsale_inter" ? TrasferBankorPoint.fromJson(json["pointsale_inter"]) : null,
+        // pointsale_national: json["plataform"] == "pointsale_national" ? TrasferBankorPoint.fromJson(json["pointsale_national"]) : null,
+        // paypal: json["plataform"] == "paypal" ? TrasferBankorPoint.fromJson(json["paypal"]) : null,
+        // binance: json["plataform"] == "binance" ? TrasferBankorPoint.fromJson(json["binance"]) : null,
+        // stripe: json["plataform"] == "stripe" ? TrasferBankorPoint.fromJson(json["stripe"]) : null,
+        // zinli: json["plataform"] == "zinli" ? TrasferBankorPoint.fromJson(json["zinli"]) : null,
+        // zelle: json["plataform"] == "zinli" ? TrasferBankorPoint.fromJson(json["zinli"]) : null,
+      );
+}
+
+class CashInterNational {
+  // ignore: non_constant_identifier_names
+  String? id, date_created, date_approved, operation_type, payment_method_id, payment_type_id, status, status_detail;
+  // ignore: non_constant_identifier_names
+  num? pay_with, turned, Real_pay, Real_turned;
+
+  // ignore: non_constant_identifier_names
+  CashInterNational({this.id, this.pay_with, this.turned, this.Real_pay, this.Real_turned, this.date_created, this.date_approved, this.operation_type, this.payment_method_id, this.payment_type_id, this.status, this.status_detail});
+  factory CashInterNational.fromJson(json) => CashInterNational(id: json?["_id"], pay_with: json?["pay_with"], turned: json?["turned"], Real_pay: json?["Real_pay"], Real_turned: json?["Real_turned"], date_created: json?["date_created"], date_approved: json?["date_approved"], operation_type: json?["operation_type"], payment_method_id: json?["payment_method_id"], payment_type_id: json?["payment_type_id"], status: json?["status"], status_detail: json?["status_detail"]);
+}
+
+class TrasferBankorPoint {
+  // ignore: non_constant_identifier_names
+  String? id, date_created, date_approved, operation_type, payment_method_id, payment_type_id, status, status_detail, bank_name, NumberReference;
+  // ignore: non_constant_identifier_names
+  num? total_amount;
+  String? userPaypal;
+
+  // ignore: non_constant_identifier_names
+  TrasferBankorPoint({this.id, this.total_amount, this.NumberReference, this.bank_name, this.date_created, this.date_approved, this.operation_type, this.payment_method_id, this.payment_type_id, this.status, this.status_detail, this.userPaypal});
+  factory TrasferBankorPoint.fromJson(json) => TrasferBankorPoint(id: json?["_id"], total_amount: json?["total_amount"], bank_name: json?["bank_name"], NumberReference: json?["NumberReference"], date_created: json?["date_created"], date_approved: json?["date_approved"], operation_type: json?["operation_type"], payment_method_id: json?["payment_method_id"], payment_type_id: json?["payment_type_id"], status: json?["status"], status_detail: json?["status_detail"], userPaypal: json?["userPaypal"]);
 }

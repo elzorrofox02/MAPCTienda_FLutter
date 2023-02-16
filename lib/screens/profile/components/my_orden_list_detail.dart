@@ -5,7 +5,6 @@ import 'package:hellowork/constants.dart';
 //import 'package:hellowork/models/product.dart';
 import 'package:hellowork/screens/profile/components/utils_ordens.dart';
 import 'package:hellowork/components/image_viewer.dart';
-import 'dart:convert';
 //import 'package:http/http.dart' as http;
 
 class MyOrdenDetail extends StatefulWidget {
@@ -138,7 +137,7 @@ class _ExplorePageState extends State<MyOrdenDetail> {
                                     "Metodo",
                                     style: ordenList,
                                   ),
-                                  trailing: Text("${OrdenUtils.method(envio)["mth"]}"),
+                                  trailing: Text("${OrdenUtils.method(plataform)["mth"]}"),
                                 ),
                                 plataform == "province"
                                     ? ListTile(
@@ -469,18 +468,6 @@ class _ExplorePageState extends State<MyOrdenDetail> {
                 ],
               ),
             )));
-  }
-}
-
-class Shipping extends StatelessWidget {
-  const Shipping({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
   }
 }
 
