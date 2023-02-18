@@ -5,17 +5,20 @@ import 'package:hellowork/screens/tabs/tabs.dart';
 import 'package:hellowork/screens/profile/components/my_orders.dart';
 import 'package:hellowork/screens/cart/cart.dart';
 import 'package:hellowork/screens/profile/profile_screen.dart';
-
 import 'package:hellowork/cart_povider.dart';
-
 import 'package:hellowork/screens/test.dart';
-
 import 'package:hellowork/components/load_svgicon.dart';
-
 import 'package:provider/provider.dart';
 import 'package:badges/badges.dart' as badges;
 
-void main() {
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  //final public = await dotenv.load(fileName: "assets/.env");
+  Stripe.publishableKey = "pk_test_519fJMrEmR1NGhpXVxkGniMtfAOhSNzUMJ6cwPwVknV3pt0DQlKPQYhXFcCcuZmZ2tTnuu5SytPhVVBJOMYyVgAHT00kZ7pnWB2";
+  await Stripe.instance.applySettings();
   runApp(
     MultiProvider(
       providers: [

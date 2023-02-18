@@ -81,7 +81,7 @@ class OrdenList {
         envio: Envio.fromJson(json['envio']),
         //items: (json["cart"] as Map).values.toList(),
         items: List<Product>.from(json["cart"].values.toList().map((x) => Product.fromJsonItem(x))),
-        payment: json["payment"],
+        payment: Payment.fromJson(json['payment']),
       );
 
   Map<String, dynamic> toJson() => {
@@ -156,6 +156,7 @@ class Express {
 
 class Payment {
   String? plataform, target;
+  TrasferBankorPoint? Payout;
 
   // ignore: non_constant_identifier_names
   // CashInterNational? cash_inter;
@@ -176,15 +177,14 @@ class Payment {
   // TrasferBankorPoint? zelle;
 
   // ignore: non_constant_identifier_names
-  Payment({
-    this.plataform,
-    this.target,
-    //this.cash_inter, this.cash_national, this.trasfer_bank_inter, this.trasfer_bank_national, this.pointsale_inter, this.pointsale_national, this.paypal, this.binance, this.stripe, this.zinli, this.zelle
-  });
+  Payment({this.plataform, this.target, this.Payout
+      //this.cash_inter, this.cash_national, this.trasfer_bank_inter, this.trasfer_bank_national, this.pointsale_inter, this.pointsale_national, this.paypal, this.binance, this.stripe, this.zinli, this.zelle
+      });
 
   factory Payment.fromJson(json) => Payment(
         plataform: json?["plataform"]?.toString(),
         target: json?["target"],
+        Payout: json["plataform"] != null || json["plataform"] != "" ? TrasferBankorPoint.fromJson(json[json["plataform"]]) : null,
         // cash_inter: json["plataform"] == "cash_inter" ? CashInterNational.fromJson(json["cash_inter"]) : null,
         // cash_national: json["plataform"] == "cash_national" ? CashInterNational.fromJson(json["cash_national"]) : null,
         // trasfer_bank_inter: json["plataform"] == "trasfer_bank_inter" ? TrasferBankorPoint.fromJson(json["trasfer_bank_inter"]) : null,
@@ -199,16 +199,16 @@ class Payment {
       );
 }
 
-class CashInterNational {
-  // ignore: non_constant_identifier_names
-  String? id, date_created, date_approved, operation_type, payment_method_id, payment_type_id, status, status_detail;
-  // ignore: non_constant_identifier_names
-  num? pay_with, turned, Real_pay, Real_turned;
+// class CashInterNational {
+//   // ignore: non_constant_identifier_names
+//   String? id, date_created, date_approved, operation_type, payment_method_id, payment_type_id, status, status_detail;
+//   // ignore: non_constant_identifier_names
+//   num? pay_with, turned, Real_pay, Real_turned;
 
-  // ignore: non_constant_identifier_names
-  CashInterNational({this.id, this.pay_with, this.turned, this.Real_pay, this.Real_turned, this.date_created, this.date_approved, this.operation_type, this.payment_method_id, this.payment_type_id, this.status, this.status_detail});
-  factory CashInterNational.fromJson(json) => CashInterNational(id: json?["_id"], pay_with: json?["pay_with"], turned: json?["turned"], Real_pay: json?["Real_pay"], Real_turned: json?["Real_turned"], date_created: json?["date_created"], date_approved: json?["date_approved"], operation_type: json?["operation_type"], payment_method_id: json?["payment_method_id"], payment_type_id: json?["payment_type_id"], status: json?["status"], status_detail: json?["status_detail"]);
-}
+//   // ignore: non_constant_identifier_names
+//   CashInterNational({this.id, this.pay_with, this.turned, this.Real_pay, this.Real_turned, this.date_created, this.date_approved, this.operation_type, this.payment_method_id, this.payment_type_id, this.status, this.status_detail});
+//   factory CashInterNational.fromJson(json) => CashInterNational(id: json?["_id"], pay_with: json?["pay_with"], turned: json?["turned"], Real_pay: json?["Real_pay"], Real_turned: json?["Real_turned"], date_created: json?["date_created"], date_approved: json?["date_approved"], operation_type: json?["operation_type"], payment_method_id: json?["payment_method_id"], payment_type_id: json?["payment_type_id"], status: json?["status"], status_detail: json?["status_detail"]);
+// }
 
 class TrasferBankorPoint {
   // ignore: non_constant_identifier_names
@@ -217,7 +217,26 @@ class TrasferBankorPoint {
   num? total_amount;
   String? userPaypal;
 
+  num? cashpayWith, cashTurned, cashRealpay, cashRealturned;
+
   // ignore: non_constant_identifier_names
-  TrasferBankorPoint({this.id, this.total_amount, this.NumberReference, this.bank_name, this.date_created, this.date_approved, this.operation_type, this.payment_method_id, this.payment_type_id, this.status, this.status_detail, this.userPaypal});
-  factory TrasferBankorPoint.fromJson(json) => TrasferBankorPoint(id: json?["_id"], total_amount: json?["total_amount"], bank_name: json?["bank_name"], NumberReference: json?["NumberReference"], date_created: json?["date_created"], date_approved: json?["date_approved"], operation_type: json?["operation_type"], payment_method_id: json?["payment_method_id"], payment_type_id: json?["payment_type_id"], status: json?["status"], status_detail: json?["status_detail"], userPaypal: json?["userPaypal"]);
+  TrasferBankorPoint({this.id, this.total_amount, this.NumberReference, this.bank_name, this.date_created, this.date_approved, this.operation_type, this.payment_method_id, this.payment_type_id, this.status, this.status_detail, this.userPaypal, this.cashpayWith, this.cashTurned, this.cashRealpay, this.cashRealturned});
+  factory TrasferBankorPoint.fromJson(json) => TrasferBankorPoint(
+        id: json?["_id"],
+        total_amount: json?["total_amount"],
+        bank_name: json?["bank_name"],
+        NumberReference: json?["NumberReference"],
+        date_created: json?["date_created"],
+        date_approved: json?["date_approved"],
+        operation_type: json?["operation_type"],
+        payment_method_id: json?["payment_method_id"],
+        payment_type_id: json?["payment_type_id"],
+        status: json?["status"],
+        status_detail: json?["status_detail"],
+        userPaypal: json?["userPaypal"],
+        cashpayWith: json?["pay_with"],
+        cashTurned: json?["turned"],
+        cashRealpay: json?["Real_pay"],
+        cashRealturned: json?["Real_turned"],
+      );
 }

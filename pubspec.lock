@@ -174,6 +174,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.3.0"
+  flutter_dotenv:
+    dependency: "direct main"
+    description:
+      name: flutter_dotenv
+      sha256: d9283d92059a22e9834bc0a31336658ffba77089fb6f3cc36751f1fc7c6661a3
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.0.2"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -182,6 +190,11 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.1"
+  flutter_localizations:
+    dependency: transitive
+    description: flutter
+    source: sdk
+    version: "0.0.0"
   flutter_rating_bar:
     dependency: "direct main"
     description:
@@ -190,6 +203,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.1"
+  flutter_stripe:
+    dependency: "direct main"
+    description:
+      name: flutter_stripe
+      sha256: "00e612c11ea57f9b78510e5b2aa8719022698bd8a023140e9b7f52c1dfa2e27d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "8.0.0+1"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -216,6 +237,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "10.3.0"
+  freezed_annotation:
+    dependency: transitive
+    description:
+      name: freezed_annotation
+      sha256: aeac15850ef1b38ee368d4c53ba9a847e900bb2c53a4db3f6881cbb3cb684338
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.0"
   http:
     dependency: "direct main"
     description:
@@ -240,6 +269,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.1+1"
+  intl:
+    dependency: transitive
+    description:
+      name: intl
+      sha256: "910f85bce16fb5c6f614e117efa303e85a1731bb0081edf3604a2ae6e9a3cc91"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.17.0"
   intl_phone_number_input:
     dependency: "direct main"
     description:
@@ -416,6 +453,38 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.3"
+  pay:
+    dependency: "direct main"
+    description:
+      name: pay
+      sha256: "0edf4d43a96971cac312b57a2acb86eacee386509037f58af8b4058a5c21b8bb"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
+  pay_android:
+    dependency: transitive
+    description:
+      name: pay_android
+      sha256: "13c9b0fd79e6e7afc674f09762e05e9856dd4ace6c315c5e331042ee1c1ea666"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.9"
+  pay_ios:
+    dependency: transitive
+    description:
+      name: pay_ios
+      sha256: "04c12e73d404e69f8a6e3cc0a3261d0b3980007a7bd6a2de2940b856d3de9d4c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.8"
+  pay_platform_interface:
+    dependency: transitive
+    description:
+      name: pay_platform_interface
+      sha256: "12580f960066855d4821c4eaf2ef77093c0b20bce623db33104f76db16642e3b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.3"
   pedantic:
     dependency: transitive
     description:
@@ -533,6 +602,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+  stripe_android:
+    dependency: transitive
+    description:
+      name: stripe_android
+      sha256: "3cf43dfb70d8011ded0730c091e741b94cd4aaccaad22732a19f5941503072d6"
+      url: "https://pub.dev"
+    source: hosted
+    version: "8.0.0+1"
+  stripe_ios:
+    dependency: transitive
+    description:
+      name: stripe_ios
+      sha256: b3da653013be8aada352b158439024963a0d5dc0648524127d3ef4fd6b0a0cc7
+      url: "https://pub.dev"
+    source: hosted
+    version: "8.0.0"
+  stripe_platform_interface:
+    dependency: transitive
+    description:
+      name: stripe_platform_interface
+      sha256: "28c409b0c0e98115c4ab38a9a34a883010811036e6d9fa8d495f67c3ba01c034"
+      url: "https://pub.dev"
+    source: hosted
+    version: "8.0.0"
   synchronized:
     dependency: transitive
     description:
@@ -605,6 +698,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.1.0"
+  yaml:
+    dependency: transitive
+    description:
+      name: yaml
+      sha256: "23812a9b125b48d4007117254bca50abb6c712352927eece9e155207b1db2370"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.1"
 sdks:
   dart: ">=2.18.6 <3.0.0"
   flutter: ">=3.3.0"
